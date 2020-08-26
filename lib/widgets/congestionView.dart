@@ -5,12 +5,14 @@ class SliderItem extends StatefulWidget {
   final String title;
   final Color color;
   final IconData icon;
+  final double congestRate;
 
   SliderItem({
     Key key,
     @required this.title,
     @required this.color,
     @required this.icon,
+    @required this.congestRate,
   }) : super(key: key);
 
   @override
@@ -69,6 +71,8 @@ class _SliderItemState extends State<SliderItem> {
         MaterialPageRoute(
             builder: (context) => CongestionDetails(
                   title: this.widget.title,
+                  congestRate: this.widget.congestRate,
+                  color: this.widget.color,
                 )),
       ),
     );
@@ -78,18 +82,40 @@ class _SliderItemState extends State<SliderItem> {
 class BoxItem extends StatelessWidget {
   final String title;
   final double height;
+  final double width;
   final Color color;
 
   BoxItem({
     this.title,
     this.height,
+    this.width,
     this.color,
   });
+  Widget text(String text) {
+    if (text == "")
+      return SizedBox(
+        height: 5,
+      );
+    else
+      return Padding(
+        padding: EdgeInsets.only(top: 5),
+        child: new Text(
+          this.title,
+          style: TextStyle(
+            fontFamily: "Helvetica Neue",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xffbebebe),
+          ),
+        ),
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 90,
+      width: this.width != null ? this.width : null,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -101,18 +127,7 @@ class BoxItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(11.00),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 5),
-            child: new Text(
-              this.title,
-              style: TextStyle(
-                fontFamily: "Helvetica Neue",
-                fontWeight: FontWeight.w500,
-                fontSize: 12,
-                color: Color(0xffbebebe),
-              ),
-            ),
-          )
+          text(this.title),
         ],
       ),
     );
