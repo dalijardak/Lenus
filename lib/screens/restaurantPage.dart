@@ -1,3 +1,5 @@
+import 'package:Lenus_Final/screens/food_details.dart';
+import 'package:Lenus_Final/util/food_description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -268,10 +270,12 @@ class FoodSlider extends StatelessWidget {
                 FoodItem(
                   image: AssetImage("assets/images/english_breakfast.jpg"),
                   title: "English Breakfast",
+                  description: english_breakfast,
                 ),
                 FoodItem(
                   image: AssetImage("assets/images/continental_breakfast.jpg"),
                   title: "Continental Breakfast",
+                  description: continental_breakfast,
                 ),
               ],
             ),
@@ -290,15 +294,18 @@ class FoodSlider extends StatelessWidget {
               children: [
                 FoodItem(
                   image: AssetImage("assets/images/healthy_lunch.jpg"),
-                  title: "English Breakfast",
+                  title: "Healthy Food",
+                  description: healthy_lunch.toString(),
                 ),
                 FoodItem(
                   image: AssetImage("assets/images/vegetables.jpg"),
-                  title: "Continental Breakfast",
+                  title: "Vegetables",
+                  description: vegetables,
                 ),
                 FoodItem(
                   image: AssetImage("assets/images/fast_food.jpg"),
                   title: "Fast Food",
+                  description: fast_food,
                 ),
               ],
             ),
@@ -317,11 +324,13 @@ class FoodSlider extends StatelessWidget {
               children: [
                 FoodItem(
                   image: AssetImage("assets/images/soup.jpg"),
-                  title: "English Breakfast",
+                  title: "Soup",
+                  description: soup,
                 ),
                 FoodItem(
                   image: AssetImage("assets/images/healthy.jpg"),
-                  title: "Continental Breakfast",
+                  title: "Healthy",
+                  description: healthy,
                 ),
               ],
             ),
@@ -336,42 +345,56 @@ class FoodSlider extends StatelessWidget {
 class FoodItem extends StatelessWidget {
   final AssetImage image;
   final String title;
+  final String description;
 
   FoodItem({
     this.image,
+    this.description,
     this.title,
   });
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        right: 7.5,
-        left: 7.5,
+    return InkWell(
+      child: Padding(
+        padding: EdgeInsets.only(
+          right: 7.5,
+          left: 7.5,
+        ),
+        child: Container(
+          height: 250,
+          width: 230,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 150.00,
+                width: 230.00,
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: this.image, fit: BoxFit.fill),
+                  borderRadius: BorderRadius.circular(18.00),
+                ),
+              ),
+              Text(
+                this.title,
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  fontSize: 16,
+                  color: Color(0xff0c0c0c),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
-      child: Container(
-        height: 250,
-        width: 230,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 150.00,
-              width: 230.00,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: this.image, fit: BoxFit.fill),
-                borderRadius: BorderRadius.circular(18.00),
-              ),
-            ),
-            Text(
-              this.title,
-              style: TextStyle(
-                fontFamily: "Roboto",
-                fontSize: 16,
-                color: Color(0xff0c0c0c),
-              ),
-            )
-          ],
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FoodDetails(
+            title: this.title,
+            description: this.description,
+            image: this.image,
+          ),
         ),
       ),
     );
