@@ -26,6 +26,8 @@ dependencies:
   carousel_slider: ^2.2.1
   flutter_icons: ^1.1.0 
   percent_indicator: ^2.1.5
+  material_design_icons_flutter: ^4.0.5345
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,8 +42,8 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
-flutter:
   
+flutter:
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -64,13 +66,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
+  fonts:
+    - family: CustomIcons
+      fonts:
+        - asset: icons/CustomIcons.ttf
+    - family:  MyFlutterApp
+      fonts:
+        - asset: icons/MyFlutterApp.ttf         
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

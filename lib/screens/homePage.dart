@@ -39,51 +39,6 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: EdgeInsets.only(top: 30, left: 15),
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(left: 20),
-                      width: 200,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Search",
-                            icon: Icon(Icons.search),
-                            border: InputBorder.none),
-                      ),
-                    ),
-                  ],
-                ),
-                height: 42.00,
-                width: 300,
-                decoration: BoxDecoration(
-                  color: Color(0xffffffff),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0.00, 3.00),
-                      color: Color(0xff000000).withOpacity(0.16),
-                      blurRadius: 6,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(20.00),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 15),
-              child: Text(
-                "Dashboard",
-                style: TextStyle(
-                  fontFamily: "Helvetica Neue",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                  color: Color(0xff2f2f30),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 30, left: 15),
               child: Text(
                 "See Congestion areas",
                 style: TextStyle(

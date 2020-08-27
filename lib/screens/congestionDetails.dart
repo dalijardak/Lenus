@@ -1,5 +1,4 @@
 import 'package:Lenus_Final/widgets/congestionDiagram.dart';
-import 'package:Lenus_Final/widgets/congestionView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -42,17 +41,6 @@ class CongestionDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 20, left: 15),
-                child: Text(
-                  "Dashboard",
-                  style: TextStyle(
-                    fontFamily: "Myriad Pro",
-                    fontSize: 24,
-                    color: Color(0xff2f2f30),
-                  ),
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.only(top: 20, left: 15),
                 child: Text(

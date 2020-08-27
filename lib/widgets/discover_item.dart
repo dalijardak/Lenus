@@ -17,32 +17,29 @@ class DiscoverItem extends StatelessWidget {
         child: Container(
           height: 180.00,
           width: 145.00,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                this.title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: "Helvetica Neue",
-                  fontSize: 18,
-                  color: Color(0xffffffff),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20, top: 20),
+                  child: Text(
+                    this.title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "Helvetica Neue",
+                      fontSize: 18,
+                      color: Color(0xffffffff),
+                    ),
+                  ),
                 ),
-              ),
-              Icon(
-                this.icon,
-                size: 30,
-                color: Colors.white,
-              ),
-              Text(
-                "View details",
-                style: TextStyle(
-                  fontFamily: "Helvetica Neue",
-                  fontSize: 13,
-                  color: Color(0xffffffff).withOpacity(0.8),
+                Icon(
+                  this.icon,
+                  size: 40,
+                  color: Colors.white,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           decoration: BoxDecoration(
             color: Color(0xff1e4dff),
