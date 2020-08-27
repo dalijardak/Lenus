@@ -18,6 +18,7 @@ class _ReccomSlideState extends State<ReccomSlide> {
     return result;
   }
 
+  // ignore: unused_field
   int _current = 0;
 
   @override

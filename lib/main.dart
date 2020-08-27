@@ -1,3 +1,4 @@
+import 'package:Lenus_Final/screens/restaurantPage.dart';
 import 'package:Lenus_Final/screens/userScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: UserScreen(),
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => UserScreen(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/RestaurantPage': (context) => RestaurantPage(),
+      },
     );
   }
 }

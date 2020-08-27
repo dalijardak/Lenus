@@ -1,6 +1,5 @@
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import "package:flutter/material.dart";
-import 'package:flutter_icons/flutter_icons.dart';
 
 import 'discover_item.dart';
 
@@ -14,6 +13,7 @@ class DiscoverSlider extends StatelessWidget {
         DiscoverItem(
           icon: Icons.restaurant,
           title: "Restaurant",
+          onTap: () => Navigator.pushNamed(context, "/RestaurantPage"),
         ),
         DiscoverItem(
           icon: Icons.spa,

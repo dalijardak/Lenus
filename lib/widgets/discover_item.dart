@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class DiscoverItem extends StatelessWidget {
   final String title;
   final IconData icon;
+  final dynamic onTap;
 
   DiscoverItem({
     this.title,
     this.icon,
+    this.onTap,
   });
 
   @override
@@ -47,6 +49,7 @@ class DiscoverItem extends StatelessWidget {
           ),
         ),
       ),
+      onTap: this.onTap,
     );
   }
 }
