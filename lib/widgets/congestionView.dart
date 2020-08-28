@@ -1,4 +1,4 @@
-import 'package:Lenus_Final/screens/congestionDetails.dart';
+import 'package:Lenus_Final/screens/congestion_details_page.dart';
 import 'package:flutter/material.dart';
 
 class SliderItem extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:Lenus_Final/screens/food_details.dart';
-import 'package:Lenus_Final/util/food_description.dart';
+import 'package:Lenus_Final/screens/food_details_page.dart';
+import 'package:Lenus_Final/util/descriptions/food_description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
