@@ -1,4 +1,5 @@
 import 'package:Lenus_Final/screens/restaurant_page.dart';
+import 'package:Lenus_Final/screens/spa_page.dart';
 import 'package:Lenus_Final/screens/sports_menu_page.dart';
 import 'package:Lenus_Final/screens/user_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +19,10 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => UserScreen(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
         '/RestaurantPage': (context) => RestaurantPage(),
         '/Sports': (context) => SportsPage(),
+        '/SPA': (context) => SPADetailsPAge(),
       },
     );
   }

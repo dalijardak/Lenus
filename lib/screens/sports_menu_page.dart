@@ -35,9 +35,9 @@ class SportsPage extends StatelessWidget {
                 fees: "Free",
               ),
               SportsItem(
-                title: "Tennis",
-                icon: MdiIcons.tennis,
-                image: AssetImage("assets/images/tennis.jpg"),
+                title: "Table Tennis",
+                icon: MdiIcons.tableTennis,
+                image: AssetImage("assets/images/table_tennis.jpg"),
                 description: tennis,
                 fees: "2,5 \$ / 1 hour",
               ),

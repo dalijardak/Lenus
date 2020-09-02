@@ -1,5 +1,8 @@
+import 'package:Lenus_Final/screens/categories_list.dart';
 import 'package:Lenus_Final/screens/food_details_page.dart';
 import 'package:Lenus_Final/util/descriptions/food_description.dart';
+import 'package:Lenus_Final/util/food_categories.dart';
+import 'package:Lenus_Final/util/food_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -123,7 +126,7 @@ class RestaurantPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 15),
                 child: FoodSlider(
-                  type: "breakfast",
+                  type: breakfast,
                 ),
               ),
               Padding(
@@ -141,7 +144,7 @@ class RestaurantPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 15),
                 child: FoodSlider(
-                  type: "lunch",
+                  type: lunch,
                 ),
               ),
               Padding(
@@ -159,7 +162,7 @@ class RestaurantPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 15),
                 child: FoodSlider(
-                  type: "dinner",
+                  type: dinner,
                 ),
               ),
             ],
@@ -183,18 +186,48 @@ class CategoriesSlider extends StatelessWidget {
           CategoriesItem(
             icon: Icons.local_pizza,
             title: "Pizza",
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoriesList(type: pizzas),
+              ),
+            ),
           ),
           CategoriesItem(
             icon: Icons.local_drink,
             title: "Drinks",
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoriesList(
+                  type: drinks,
+                ),
+              ),
+            ),
           ),
           CategoriesItem(
             icon: Icons.cake,
             title: "Cake",
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoriesList(
+                  type: cake,
+                ),
+              ),
+            ),
           ),
           CategoriesItem(
             icon: MaterialCommunityIcons.ice_cream,
             title: "IceCream",
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoriesList(
+                  type: iceCreams,
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -205,10 +238,12 @@ class CategoriesSlider extends StatelessWidget {
 class CategoriesItem extends StatelessWidget {
   final IconData icon;
   final String title;
+  final Function onTap;
 
   CategoriesItem({
     this.icon,
     this.title,
+    this.onTap,
   });
   @override
   Widget build(BuildContext context) {
@@ -217,39 +252,42 @@ class CategoriesItem extends StatelessWidget {
         right: 7.5,
         left: 7.5,
       ),
-      child: Container(
-        height: 89.00,
-        width: 94.00,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              this.icon,
-              size: 40,
-              color: Colors.white,
-            ),
-            Text(
-              this.title,
-              style: TextStyle(
-                fontFamily: "Myriad Pro",
-                fontSize: 16,
-                color: Color(0xffffffff),
+      child: InkWell(
+        child: Container(
+          height: 89.00,
+          width: 94.00,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                this.icon,
+                size: 40,
+                color: Colors.white,
               ),
-            )
-          ],
+              Text(
+                this.title,
+                style: TextStyle(
+                  fontFamily: "Myriad Pro",
+                  fontSize: 16,
+                  color: Color(0xffffffff),
+                ),
+              )
+            ],
+          ),
+          decoration: BoxDecoration(
+            color: Color(0xfffa5757),
+            borderRadius: BorderRadius.circular(18.00),
+          ),
         ),
-        decoration: BoxDecoration(
-          color: Color(0xfffa5757),
-          borderRadius: BorderRadius.circular(18.00),
-        ),
+        onTap: this.onTap,
       ),
     );
   }
 }
 
 class FoodSlider extends StatelessWidget {
-  final String type;
+  final List<dynamic> type;
 
   FoodSlider({
     this.type,
@@ -257,98 +295,33 @@ class FoodSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (this.type) {
-      case "breakfast":
-        {
-          return Container(
-            height: 180,
-            width: MediaQuery.of(context).size.width,
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              children: [
-                FoodItem(
-                  image: AssetImage("assets/images/english_breakfast.jpg"),
-                  title: "English Breakfast",
-                  description: english_breakfast,
-                ),
-                FoodItem(
-                  image: AssetImage("assets/images/continental_breakfast.jpg"),
-                  title: "Continental Breakfast",
-                  description: continental_breakfast,
-                ),
-              ],
-            ),
-          );
-        }
-        break;
-
-      case "lunch":
-        {
-          return Container(
-            height: 180,
-            width: MediaQuery.of(context).size.width,
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              children: [
-                FoodItem(
-                  image: AssetImage("assets/images/healthy_lunch.jpg"),
-                  title: "Healthy Food",
-                  description: healthy_lunch.toString(),
-                ),
-                FoodItem(
-                  image: AssetImage("assets/images/vegetables.jpg"),
-                  title: "Vegetables",
-                  description: vegetables,
-                ),
-                FoodItem(
-                  image: AssetImage("assets/images/fast_food.jpg"),
-                  title: "Fast Food",
-                  description: fast_food,
-                ),
-              ],
-            ),
-          );
-        }
-        break;
-
-      case "dinner":
-        {
-          return Container(
-            height: 180,
-            width: MediaQuery.of(context).size.width,
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              children: [
-                FoodItem(
-                  image: AssetImage("assets/images/soup.jpg"),
-                  title: "Soup",
-                  description: soup,
-                ),
-                FoodItem(
-                  image: AssetImage("assets/images/healthy.jpg"),
-                  title: "Healthy",
-                  description: healthy,
-                ),
-              ],
-            ),
-          );
-        }
-        break;
-    }
-    return null;
+    return Container(
+      height: 180,
+      width: MediaQuery.of(context).size.width,
+      child: ListView(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        children: type
+            .map(
+              (e) => FoodItem(
+                title: e["title"],
+                imageUrl: e["image_url"],
+                description: e["description"],
+              ),
+            )
+            .toList(),
+      ),
+    );
   }
 }
 
 class FoodItem extends StatelessWidget {
-  final AssetImage image;
+  final String imageUrl;
   final String title;
   final String description;
 
   FoodItem({
-    this.image,
+    this.imageUrl,
     this.description,
     this.title,
   });
@@ -361,17 +334,19 @@ class FoodItem extends StatelessWidget {
           left: 7.5,
         ),
         child: Container(
-          height: 250,
+          height: 200,
           width: 230,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 height: 150.00,
                 width: 230.00,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: this.image, fit: BoxFit.fill),
+                  image: DecorationImage(
+                    image: AssetImage(this.imageUrl),
+                    fit: BoxFit.fill,
+                  ),
                   borderRadius: BorderRadius.circular(18.00),
                 ),
               ),
@@ -393,7 +368,7 @@ class FoodItem extends StatelessWidget {
           builder: (context) => FoodDetails(
             title: this.title,
             description: this.description,
-            image: this.image,
+            image: this.imageUrl,
           ),
         ),
       ),

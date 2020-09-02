@@ -37,7 +37,7 @@ class SportsDetails extends StatelessWidget {
             Positioned(
               bottom: 0,
               child: Container(
-                height: 450.00,
+                height: 400.00,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,7 +91,7 @@ class SportsDetails extends StatelessWidget {
             Positioned(
               bottom: 0,
               child: Container(
-                height: 300.00,
+                height: 250.00,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,

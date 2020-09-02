@@ -18,6 +18,7 @@ class DiscoverSlider extends StatelessWidget {
         DiscoverItem(
           icon: Icons.spa,
           title: "SPA",
+          onTap: () => Navigator.pushNamed(context, "/SPA"),
         ),
         DiscoverItem(
           icon: MdiIcons.handball,

@@ -32,7 +32,7 @@ class _SliderItemState extends State<SliderItem> {
                 margin: EdgeInsets.only(right: 3, left: 3),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
+                  child: Image.asset(
                     "${this.widget.img}",
                     fit: BoxFit.cover,
                   ),

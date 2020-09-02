@@ -3,7 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 class FoodDetails extends StatelessWidget {
   final String title;
-  final AssetImage image;
+  final String image;
   final String description;
 
   FoodDetails({
@@ -26,7 +26,7 @@ class FoodDetails extends StatelessWidget {
                 width: 400,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: this.image,
+                    image: AssetImage(this.image),
                     fit: BoxFit.cover,
                   ),
                 ),
