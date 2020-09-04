@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 
-class MyAppBar extends StatelessWidget with PreferredSizeWidget {
+class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
   final bool returnIcon;
@@ -11,9 +11,14 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
     this.returnIcon,
   }) : preferredSize = Size.fromHeight(50.0);
   @override
+  _MyAppBarState createState() => _MyAppBarState();
+}
+
+class _MyAppBarState extends State<MyAppBar> {
+  int _value = 1;
+  @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 0,
       backgroundColor: Colors.white,
       title: Container(
         child: Row(
@@ -32,30 +37,39 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
           ],
         ),
         height: 35.00,
-        width: 300,
+        width: MediaQuery.of(context).size.width * 0.75,
         decoration: BoxDecoration(
           color: Color(0xffffffff),
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0.00, 3.00),
-              color: Color(0xff000000).withOpacity(0.16),
-              blurRadius: 6,
-            ),
-          ],
           borderRadius: BorderRadius.circular(20.00),
+          border: Border.all(
+            color: Color.fromARGB(90, 112, 112, 112),
+          ),
         ),
       ),
       centerTitle: true,
       actions: [
         Padding(
-          padding: EdgeInsets.only(right: 15),
-          child: Icon(
-            Icons.person,
-            color: Colors.black,
+          padding: EdgeInsets.only(right: 10),
+          child: Align(
+            alignment: Alignment.center,
+            child: InkWell(
+              child: Container(
+                height: 36,
+                width: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/heisenberg.jpeg"),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              onTap: () => Navigator.pushNamed(context, "/Profile"),
+            ),
           ),
         ),
       ],
-      leading: returnIcon
+      leading: this.widget.returnIcon
           ? IconButton(
               icon: Icon(
                 FontAwesome.chevron_circle_left,

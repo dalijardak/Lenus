@@ -1,6 +1,5 @@
-import 'package:Lenus_Final/screens/food_details_page.dart';
-import 'package:Lenus_Final/screens/restaurant_page.dart';
-import 'package:Lenus_Final/util/food_categories.dart';
+import 'package:Lenus_Final/screens/categories_food_details.dart';
+
 import 'package:Lenus_Final/widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +11,7 @@ class CategoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: MyAppBar(
         returnIcon: true,
       ),
@@ -25,7 +25,9 @@ class CategoriesList extends StatelessWidget {
         ),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          child: FoodList(type: this.type),
+          child: FoodList(
+            type: this.type,
+          ),
         ),
       ),
     );
@@ -47,6 +49,7 @@ class FoodList extends StatelessWidget {
             (e) => FoodElement(
               title: e["title"],
               imageUrl: e["image_url"],
+              description: e["description"],
               price: e["price"],
             ),
           )
@@ -59,11 +62,13 @@ class FoodElement extends StatelessWidget {
   final String title;
   final String imageUrl;
   final String price;
+  final String description;
 
   FoodElement({
     this.title,
     this.imageUrl,
     this.price,
+    this.description,
   });
 
   @override
@@ -89,10 +94,11 @@ class FoodElement extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => FoodDetails(
+                builder: (context) => FoodCategoriesDetails(
                   title: this.title,
-                  description: "lol",
+                  description: this.description,
                   image: this.imageUrl,
+                  price: this.price,
                 ),
               ),
             ),

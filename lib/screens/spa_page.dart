@@ -34,7 +34,7 @@ class SPADetailsPAge extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 30),
                       child: Text(
-                        "SPA and Beauty",
+                        "Spa and Beauty",
                         style: TextStyle(
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.w700,
@@ -44,12 +44,16 @@ class SPADetailsPAge extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.only(
+                        top: 15,
+                        right: 20,
+                        left: 20,
+                      ),
                       child: Text(
                         spa_description_1,
                         style: TextStyle(
                           fontFamily: "Roboto",
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Color(0xffffffff),
                         ),
                       ),
@@ -60,7 +64,7 @@ class SPADetailsPAge extends StatelessWidget {
                         "Details",
                         style: TextStyle(
                           fontFamily: "Roboto",
-                          fontSize: 18,
+                          fontSize: 14,
                           color: Color(0xffffffff),
                         ),
                       ),
@@ -103,7 +107,7 @@ class SPADetailsPAge extends StatelessWidget {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: "Roboto",
-                            fontSize: 16,
+                            fontSize: 12,
                             color: Color(0xff000000),
                           ),
                         ),
@@ -118,8 +122,8 @@ class SPADetailsPAge extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  height: 46.00,
-                  width: 257.00,
+                  height: 35.00,
+                  width: 220.00,
                   decoration: BoxDecoration(
                     color: Color(0xff1e4dff),
                     borderRadius: BorderRadius.circular(25.00),
@@ -130,7 +134,7 @@ class SPADetailsPAge extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: "Roboto",
-                        fontSize: 18,
+                        fontSize: 16,
                         color: Color(0xffffffff),
                       ),
                     ),

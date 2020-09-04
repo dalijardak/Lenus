@@ -1,8 +1,8 @@
 import 'package:Lenus_Final/screens/categories_list.dart';
 import 'package:Lenus_Final/screens/food_details_page.dart';
-import 'package:Lenus_Final/util/descriptions/food_description.dart';
 import 'package:Lenus_Final/util/food_categories.dart';
 import 'package:Lenus_Final/util/food_list.dart';
+import 'package:Lenus_Final/widgets/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -10,59 +10,10 @@ class RestaurantPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                width: 200,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      hintText: "Search",
-                      icon: Icon(Icons.search),
-                      border: InputBorder.none),
-                ),
-              ),
-            ],
-          ),
-          height: 35.00,
-          width: 300,
-          decoration: BoxDecoration(
-            color: Color(0xffffffff),
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(0.00, 3.00),
-                color: Color(0xff000000).withOpacity(0.16),
-                blurRadius: 6,
-              ),
-            ],
-            borderRadius: BorderRadius.circular(20.00),
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 15),
-            child: Icon(
-              Icons.person,
-              color: Colors.black,
-            ),
-          ),
-        ],
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(
-              FontAwesome.chevron_circle_left,
-              color: Colors.grey,
-            ),
-            onPressed: () => Navigator.pop(context),
-          ),
-        ),
+      appBar: MyAppBar(
+        returnIcon: true,
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.all(5),
@@ -177,7 +128,7 @@ class CategoriesSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 90,
       width: MediaQuery.of(context).size.width,
       child: ListView(
         physics: BouncingScrollPhysics(),
@@ -254,8 +205,8 @@ class CategoriesItem extends StatelessWidget {
       ),
       child: InkWell(
         child: Container(
-          height: 89.00,
-          width: 94.00,
+          height: 90.00,
+          width: 90.00,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -276,7 +227,7 @@ class CategoriesItem extends StatelessWidget {
             ],
           ),
           decoration: BoxDecoration(
-            color: Color(0xfffa5757),
+            color: Color(0xff1E4DFF),
             borderRadius: BorderRadius.circular(18.00),
           ),
         ),

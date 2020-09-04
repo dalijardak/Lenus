@@ -15,6 +15,7 @@ class FoodDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Stack(

@@ -1,10 +1,14 @@
+import 'package:Lenus_Final/screens/profile.dart';
 import 'package:Lenus_Final/screens/restaurant_page.dart';
 import 'package:Lenus_Final/screens/spa_page.dart';
 import 'package:Lenus_Final/screens/sports_menu_page.dart';
 import 'package:Lenus_Final/screens/user_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MyApp());
 }
 
@@ -23,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/RestaurantPage': (context) => RestaurantPage(),
         '/Sports': (context) => SportsPage(),
         '/SPA': (context) => SPADetailsPAge(),
+        '/Profile': (context) => Profile(),
       },
     );
   }

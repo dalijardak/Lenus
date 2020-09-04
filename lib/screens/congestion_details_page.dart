@@ -17,6 +17,7 @@ class CongestionDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           padding: EdgeInsets.only(left: 30, top: 25),

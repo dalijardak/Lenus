@@ -11,6 +11,7 @@ class SportsPage extends StatelessWidget {
       appBar: MyAppBar(
         returnIcon: true,
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.all(5),
         physics: BouncingScrollPhysics(),
@@ -28,9 +29,9 @@ class SportsPage extends StatelessWidget {
                 fees: "Free",
               ),
               SportsItem(
-                title: "Handball",
-                icon: MdiIcons.handball,
-                image: AssetImage("assets/images/handball.jpg"),
+                title: "Basketball",
+                icon: MdiIcons.basketball,
+                image: AssetImage("assets/images/basketball.jpg"),
                 description: handball,
                 fees: "Free",
               ),

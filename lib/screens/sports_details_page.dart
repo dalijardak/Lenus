@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SportsDetails extends StatelessWidget {
   final String title;
@@ -17,6 +16,7 @@ class SportsDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Stack(
