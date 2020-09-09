@@ -1,3 +1,5 @@
+import 'package:Lenus_Final/screens/about_page.dart';
+import 'package:Lenus_Final/screens/orders.dart';
 import 'package:Lenus_Final/screens/profile.dart';
 import 'package:Lenus_Final/screens/restaurant_page.dart';
 import 'package:Lenus_Final/screens/spa_page.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
         '/Sports': (context) => SportsPage(),
         '/SPA': (context) => SPADetailsPAge(),
         '/Profile': (context) => Profile(),
+        '/About': (context) => AboutPage(),
+        '/Orders': (context) => OrdersPage(),
       },
     );
   }

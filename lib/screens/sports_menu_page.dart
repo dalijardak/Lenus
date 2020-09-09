@@ -1,6 +1,7 @@
 import 'package:Lenus_Final/screens/sports_details_page.dart';
 import 'package:Lenus_Final/util/descriptions/sports_description.dart';
 import 'package:Lenus_Final/widgets/appBar.dart';
+import 'package:Lenus_Final/widgets/drawer.dart';
 import "package:flutter/material.dart";
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -11,6 +12,7 @@ class SportsPage extends StatelessWidget {
       appBar: MyAppBar(
         returnIcon: true,
       ),
+      drawer: MyDrawer(),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.all(5),

@@ -3,6 +3,7 @@ import 'package:Lenus_Final/screens/food_details_page.dart';
 import 'package:Lenus_Final/util/food_categories.dart';
 import 'package:Lenus_Final/util/food_list.dart';
 import 'package:Lenus_Final/widgets/appBar.dart';
+import 'package:Lenus_Final/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -13,6 +14,7 @@ class RestaurantPage extends StatelessWidget {
       appBar: MyAppBar(
         returnIcon: true,
       ),
+      drawer: MyDrawer(),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),

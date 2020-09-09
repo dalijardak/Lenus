@@ -1,6 +1,7 @@
 import 'package:Lenus_Final/screens/categories_food_details.dart';
 
 import 'package:Lenus_Final/widgets/appBar.dart';
+import 'package:Lenus_Final/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesList extends StatelessWidget {
@@ -15,7 +16,7 @@ class CategoriesList extends StatelessWidget {
       appBar: MyAppBar(
         returnIcon: true,
       ),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.only(

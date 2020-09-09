@@ -1,7 +1,6 @@
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Profile extends StatelessWidget {
   @override

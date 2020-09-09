@@ -1,0 +1,2 @@
+const String about =
+    "Lenus is an intelligent solution intended for hotels, it aims to facilitate communication between the customer and the hotel.\nthe customer can access hotel information (see the menu of the day, see the program and events) he can also book for the various activities or for the restaurant directly on the application. the user can follow the occupancy rates of common areas (the restaurant, the swimming pool ...) he can make complaints or feedbacks, request room service, play quizzes and consult the recommendations.";

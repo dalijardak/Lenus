@@ -1,7 +1,9 @@
 import 'package:Lenus_Final/screens/customer_service.dart';
 import 'package:Lenus_Final/widgets/appBar.dart';
+import 'package:Lenus_Final/widgets/drawer.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'home_page.dart';
 
@@ -58,9 +60,7 @@ class _UserScreenState extends State<UserScreen> {
           : MyAppBar(
               returnIcon: false,
             ),
-      drawer: Drawer(
-        child: Text("hahah"),
-      ),
+      drawer: MyDrawer(),
       body: PageView(
         controller: pageController,
         onPageChanged: (index) {
