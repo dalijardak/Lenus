@@ -2,7 +2,7 @@ import 'package:Lenus_Final/util/descriptions/spa_description.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 
-class SPADetailsPAge extends StatelessWidget {
+class SPADetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

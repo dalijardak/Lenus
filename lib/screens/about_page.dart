@@ -42,119 +42,131 @@ class AboutPage extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      body: Container(
-        height: getY(context),
-        width: getX(context),
-        padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            new Text(
-              about,
-              style: TextStyle(
-                fontFamily: "Roboto",
-                fontSize: 16,
-                color: Color(0xff0a0a0a),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 15),
-              child: Text(
-                "Values ",
-                style: TextStyle(
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24,
-                  color: Color(0xff1e4dff),
+      body: SingleChildScrollView(
+        child: Container(
+          width: getX(context),
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Image(
+                  height: getY(context) * 0.3,
+                  width: getX(context),
+                  image: AssetImage("assets/logo/logo.png"),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 15),
-              child: ListTile(
-                contentPadding: EdgeInsets.all(0),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      height: 10.00,
-                      width: 10.00,
-                      decoration: BoxDecoration(
-                        color: Color(0xff1e4dff),
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    new Text(
-                      "Manage physical distancing between \nclients.",
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: Color(0xff0a0a0a),
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: new Text(
+                  about,
+                  style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16,
+                    color: Color(0xff0a0a0a),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 15),
-              child: ListTile(
-                contentPadding: EdgeInsets.all(0),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      height: 10.00,
-                      width: 10.00,
-                      decoration: BoxDecoration(
-                        color: Color(0xff1e4dff),
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    new Text(
-                      "Avoid contact between customer and\nstaff.",
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: Color(0xff0a0a0a),
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: EdgeInsets.only(top: 15, bottom: 15),
+                child: Text(
+                  "Values ",
+                  style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24,
+                    color: Color(0xff1e4dff),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 15),
-              child: ListTile(
-                contentPadding: EdgeInsets.all(0),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      height: 10.00,
-                      width: 10.00,
-                      decoration: BoxDecoration(
-                        color: Color(0xff1e4dff),
-                        shape: BoxShape.circle,
+              Padding(
+                padding: EdgeInsets.only(top: 15, bottom: 15),
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(0),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        height: 10.00,
+                        width: 10.00,
+                        decoration: BoxDecoration(
+                          color: Color(0xff1e4dff),
+                          shape: BoxShape.circle,
+                        ),
                       ),
-                    ),
-                    new Text(
-                      "Offer unique and personalized services\nfor the client.",
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: Color(0xff0a0a0a),
+                      new Text(
+                        "Manage physical distancing between \nclients.",
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Color(0xff0a0a0a),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.only(top: 15, bottom: 15),
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(0),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        height: 10.00,
+                        width: 10.00,
+                        decoration: BoxDecoration(
+                          color: Color(0xff1e4dff),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      new Text(
+                        "Avoid contact between customer and\nstaff.",
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Color(0xff0a0a0a),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 15, bottom: 15),
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(0),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        height: 10.00,
+                        width: 10.00,
+                        decoration: BoxDecoration(
+                          color: Color(0xff1e4dff),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      new Text(
+                        "Offer unique and personalized services\nfor the client.",
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Color(0xff0a0a0a),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

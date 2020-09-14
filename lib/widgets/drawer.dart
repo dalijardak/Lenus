@@ -34,22 +34,31 @@ class MyDrawer extends StatelessWidget {
             _createDrawerItem(
               icon: MdiIcons.book,
               text: "Bookings",
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+                Navigator.pushNamed(context, "/Booking");
+              },
             ),
             _createDrawerItem(
               icon: MdiIcons.gift,
               text: "Gifts",
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+                Navigator.pushNamed(context, "/Gifts");
+              },
             ),
             _createDrawerItem(
               icon: MdiIcons.speaker,
               text: "Feedback",
             ),
             _createDrawerItem(
-                icon: MdiIcons.information,
-                text: "About Lenus",
-                onTap: () {
-                  Scaffold.of(context).openEndDrawer();
-                  Navigator.pushNamed(context, "/About");
-                }),
+              icon: MdiIcons.information,
+              text: "About Lenus",
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+                Navigator.pushNamed(context, "/About");
+              },
+            ),
             _createDrawerItem(
               icon: MdiIcons.logout,
               text: "Log Out",

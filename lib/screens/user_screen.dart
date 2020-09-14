@@ -1,10 +1,10 @@
 import 'package:Lenus_Final/screens/customer_service.dart';
+import 'package:Lenus_Final/screens/quizz.dart';
 import 'package:Lenus_Final/widgets/appBar.dart';
 import 'package:Lenus_Final/widgets/drawer.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 import 'home_page.dart';
 
 class UserScreen extends StatefulWidget {
@@ -66,7 +66,7 @@ class _UserScreenState extends State<UserScreen> {
         onPageChanged: (index) {
           setState(() {
             selectedIndex = index;
-            if (selectedIndex == 1)
+            if (selectedIndex == 1 || selectedIndex == 2)
               isDisabled = true;
             else
               isDisabled = false;
@@ -75,9 +75,7 @@ class _UserScreenState extends State<UserScreen> {
         children: <Widget>[
           HomePage(),
           CustomerService(),
-          Center(
-            child: Text("Quizz"),
-          ),
+          QuizGame(),
           Center(
             child: Text("Notifications"),
           ),
@@ -99,7 +97,7 @@ class _UserScreenState extends State<UserScreen> {
               "Chat",
             ),
             icon: Icon(
-              Icons.chat,
+              MdiIcons.chatProcessingOutline,
             ),
           ),
           BottomNavigationBarItem(
@@ -119,7 +117,7 @@ class _UserScreenState extends State<UserScreen> {
             ),
           ),
         ],
-        selectedItemColor: Colors.black,
+        selectedItemColor: Color(0xff1E4DFF),
         currentIndex: selectedIndex,
         onTap: _onItemTapped,
       ),
