@@ -1,7 +1,7 @@
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'dart:async';
 
 class QuestionsPage extends StatefulWidget {
   @override
@@ -11,7 +11,6 @@ class QuestionsPage extends StatefulWidget {
 class _QuestionsPageState extends State<QuestionsPage> {
   PageController pageController;
   int selectedIndex = 0;
-
   void _onItemTapped() {
     setState(() {
       selectedIndex++;
@@ -249,6 +248,10 @@ class Processing extends StatefulWidget {
 }
 
 class _ProcessingState extends State<Processing> {
+  _ProcessingState() {
+    Duration timer = new Duration(seconds: 2);
+    new Timer(timer, () => Navigator.pushNamed(context, "/Home"));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

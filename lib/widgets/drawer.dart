@@ -50,6 +50,10 @@ class MyDrawer extends StatelessWidget {
             _createDrawerItem(
               icon: MdiIcons.speaker,
               text: "Feedback",
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+                Navigator.pushNamed(context, "/Feedback");
+              },
             ),
             _createDrawerItem(
               icon: MdiIcons.information,

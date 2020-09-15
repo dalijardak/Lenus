@@ -1,5 +1,6 @@
 import 'package:Lenus_Final/screens/about_page.dart';
 import 'package:Lenus_Final/screens/booking_page.dart';
+import 'package:Lenus_Final/screens/feedback.dart';
 import 'package:Lenus_Final/screens/gift_page.dart';
 import 'package:Lenus_Final/screens/questions.dart';
 import 'package:Lenus_Final/screens/sign_in.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/SignUp': (context) => SignUpPage(),
         '/Questions': (context) => QuestionsPage(),
         '/Home': (context) => UserScreen(),
+        '/Feedback': (context) => FeedbackPage(),
         '/Quiz': (context) => QuizPages(),
         '/RestaurantPage': (context) => RestaurantPage(),
         '/Sports': (context) => SportsPage(),

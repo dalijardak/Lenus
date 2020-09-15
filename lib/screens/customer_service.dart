@@ -1,3 +1,4 @@
+import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 
 class CustomerService extends StatefulWidget {
@@ -8,6 +9,9 @@ class CustomerService extends StatefulWidget {
 class _CustomerServiceState extends State<CustomerService> {
   TextEditingController messageController;
   Color iconColor = Colors.grey;
+
+  List<bool> isSelected = [false, false, false];
+  int selectedIndex = 0;
   void initState() {
     super.initState();
     messageController = TextEditingController(text: "");
@@ -18,6 +22,13 @@ class _CustomerServiceState extends State<CustomerService> {
     super.dispose();
   }
 
+  _onTap(int index) {
+    setState(() {
+      for (var i = 0; i < 3; i++) isSelected[i] = false;
+      isSelected[index] = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -26,71 +37,94 @@ class _CustomerServiceState extends State<CustomerService> {
         width: MediaQuery.of(context).size.width,
         child: Stack(
           children: [
-            Container(
+            new Container(
+              height: getY(context) * 0.17,
               decoration: BoxDecoration(
-                color: Color(0xff1E4DFF),
+                color: Color(0xffffffff),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0.00, 3.00),
+                    color: Color(0xff000000).withOpacity(0.16),
+                    blurRadius: 6,
+                  ),
+                ],
               ),
-              child: Padding(
-                padding: EdgeInsets.only(top: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Customer Service",
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Color(0xffffffff),
-                      ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  new Text(
+                    "Customer Service",
+                    style: TextStyle(
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18,
+                      color: Color(0xff000000),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 60),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            "Food",
-                            style: TextStyle(
-                              fontFamily: "Helvetica Neue",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Color(0xffffffff),
-                            ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FlatButton(
+                        child: new Text(
+                          "Food",
+                          style: TextStyle(
+                            fontFamily: "Helvetica Neue",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: isSelected[0]
+                                ? Colors.white
+                                : Color(0xff1e4dff),
                           ),
-                          Text(
-                            "Room Service",
-                            style: TextStyle(
-                              fontFamily: "Helvetica Neue",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Color(0xffffffff),
-                            ),
-                          ),
-                          Text(
-                            "Activities",
-                            style: TextStyle(
-                              fontFamily: "Helvetica Neue",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Color(0xffffffff),
-                            ),
-                          ),
-                          Text(
-                            "Payement",
-                            style: TextStyle(
-                              fontFamily: "Helvetica Neue",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Color(0xffffffff),
-                            ),
-                          ),
-                        ],
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Color(0xff1e4dff)),
+                        ),
+                        color: isSelected[0] ? Color(0xff1e4dff) : Colors.white,
+                        onPressed: () => _onTap(0),
                       ),
-                    )
-                  ],
-                ),
+                      FlatButton(
+                        child: new Text(
+                          "Room Service",
+                          style: TextStyle(
+                            fontFamily: "Helvetica Neue",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: isSelected[1]
+                                ? Colors.white
+                                : Color(0xff1e4dff),
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.blue),
+                        ),
+                        color: isSelected[1] ? Color(0xff1e4dff) : Colors.white,
+                        onPressed: () => _onTap(1),
+                      ),
+                      FlatButton(
+                        child: new Text(
+                          "Activities",
+                          style: TextStyle(
+                            fontFamily: "Helvetica Neue",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: isSelected[2]
+                                ? Colors.white
+                                : Color(0xff1e4dff),
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.blue),
+                        ),
+                        color: isSelected[2] ? Color(0xff1e4dff) : Colors.white,
+                        onPressed: () => _onTap(2),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
             Positioned(
