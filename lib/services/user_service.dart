@@ -1,20 +1,35 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:Lenus_Final/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future<User> fetchUser() async {
-  final response = await http
-      .get('https://my-json-server.typicode.com/dalijardak/test/user');
+  String filename = "CacheUser.json";
+  var cacheDir = await getTemporaryDirectory();
 
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return User.fromJson(json.decode(response.body));
+  if (await File(cacheDir.path + "/" + filename).exists()) {
+    print("Loading from cache");
+    var jsonData = File(cacheDir.path + "/" + filename).readAsStringSync();
+    return User.fromJson(json.decode(jsonData));
   } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
+    print("Loading from API");
+
+    final response = await http
+        .get('https://my-json-server.typicode.com/dalijardak/test/user');
+    if (response.statusCode == 200) {
+      var jsonResponse = response.body;
+      User user = User.fromJson(json.decode(jsonResponse));
+      var tempDir = await getTemporaryDirectory();
+      File file = new File(tempDir.path + "/" + filename);
+      file.writeAsString(jsonResponse, flush: true, mode: FileMode.write);
+      print("Cashe Created");
+
+      return user;
+    } else {
+      throw Exception("Failed to load User");
+    }
   }
 }
 
@@ -28,7 +43,7 @@ fullNameEdit(String newName) async {
   // check the status code for the result
   int statusCode = response.statusCode;
   // this API passes back the updated item with the id added
-  String body = response.body;
+  //String body = response.body;
   // {
   //   "title": "Hello",
   //   "body": "body text",

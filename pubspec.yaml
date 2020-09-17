@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.2  
+  path_provider: ^1.6.14
   carousel_slider: ^2.2.1
   flutter_icons: ^1.1.0 
   percent_indicator: ^2.1.5

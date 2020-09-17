@@ -15,7 +15,6 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _MyAppBarState extends State<MyAppBar> {
-  int _value = 1;
   @override
   Widget build(BuildContext context) {
     return AppBar(

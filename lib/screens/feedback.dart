@@ -1,4 +1,3 @@
-import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -23,7 +22,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     super.dispose();
   }
 
-  _onTap(int index) {
+  onTap(int index) {
     setState(() {
       for (var i = 0; i < 3; i++) isSelected[i] = false;
       isSelected[index] = true;

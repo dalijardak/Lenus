@@ -1,8 +1,22 @@
+import 'package:Lenus_Final/models/user.dart';
+import 'package:Lenus_Final/services/user_service.dart';
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  Future<User> futureUser;
+  @override
+  void initState() {
+    super.initState();
+    futureUser = fetchUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,35 +105,53 @@ class Profile extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(top: 30),
-              child: ListView(
-                padding: EdgeInsets.all(15),
-                children: [
-                  elementInfo(
-                    "Name",
-                    "Heisenberg",
-                    context,
+          FutureBuilder<User>(
+            future: futureUser,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 30),
+                    child: ListView(
+                      padding: EdgeInsets.all(15),
+                      children: [
+                        elementInfo(
+                          "Name",
+                          snapshot.data.name,
+                          context,
+                        ),
+                        elementInfo(
+                          "Email",
+                          snapshot.data.email,
+                          context,
+                        ),
+                        elementInfo(
+                          "Phone",
+                          snapshot.data.phone,
+                          context,
+                        ),
+                        elementInfo(
+                          "Address",
+                          "Albequerque",
+                          context,
+                        ),
+                      ],
+                    ),
                   ),
-                  elementInfo(
-                    "Email",
-                    "Heisenberg@gmail.com",
-                    context,
+                );
+              }
+              return Expanded(
+                child: Center(
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                    ),
                   ),
-                  elementInfo(
-                    "Phone",
-                    "1337",
-                    context,
-                  ),
-                  elementInfo(
-                    "Address",
-                    "Albequerque",
-                    context,
-                  ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           )
         ],
       ),

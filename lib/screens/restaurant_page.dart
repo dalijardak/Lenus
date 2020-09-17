@@ -6,6 +6,7 @@ import 'package:Lenus_Final/widgets/appBar.dart';
 import 'package:Lenus_Final/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class RestaurantPage extends StatelessWidget {
   @override
@@ -138,7 +139,7 @@ class CategoriesSlider extends StatelessWidget {
         children: [
           CategoriesItem(
             icon: Icons.local_pizza,
-            title: "Pizza",
+            title: "Salty",
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -147,7 +148,7 @@ class CategoriesSlider extends StatelessWidget {
             ),
           ),
           CategoriesItem(
-            icon: Icons.local_drink,
+            icon: MdiIcons.cup,
             title: "Drinks",
             onTap: () => Navigator.push(
               context,
@@ -160,24 +161,12 @@ class CategoriesSlider extends StatelessWidget {
           ),
           CategoriesItem(
             icon: Icons.cake,
-            title: "Cake",
+            title: "Sweets",
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => CategoriesList(
                   type: cake,
-                ),
-              ),
-            ),
-          ),
-          CategoriesItem(
-            icon: MaterialCommunityIcons.ice_cream,
-            title: "IceCream",
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CategoriesList(
-                  type: iceCreams,
                 ),
               ),
             ),
@@ -215,7 +204,7 @@ class CategoriesItem extends StatelessWidget {
             children: [
               Icon(
                 this.icon,
-                size: 40,
+                size: 30,
                 color: Colors.white,
               ),
               Text(

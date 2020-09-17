@@ -12,7 +12,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  _validate() {
+  validate() {
     if (_formKey.currentState.validate()) {
       //To DO
     }
