@@ -12,6 +12,7 @@ import 'package:Lenus_Final/screens/sign_up.dart';
 import 'package:Lenus_Final/screens/spa_page.dart';
 import 'package:Lenus_Final/screens/sports_menu_page.dart';
 import 'package:Lenus_Final/screens/user_screen.dart';
+import 'package:Lenus_Final/screens/verify_user.dart';
 import 'package:Lenus_Final/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (context) => WelcomePage(),
+        '/': (context) => Auth(),
         '/Login': (context) => LoginPage(),
         '/SignUp': (context) => SignUpPage(),
         '/Questions': (context) => QuestionsPage(),

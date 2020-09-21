@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
+import 'package:intl/intl.dart';
 
 class CustomerService extends StatefulWidget {
   @override
@@ -8,9 +11,22 @@ class CustomerService extends StatefulWidget {
 
 class _CustomerServiceState extends State<CustomerService> {
   TextEditingController messageController;
-  Color iconColor = Colors.grey;
+  ScrollController _controller = ScrollController();
+  bool isDisabled = true;
+  final df = new DateFormat('hh:mm a');
 
-  List<bool> isSelected = [false, false, false];
+  List messagesList = [
+    {
+      "text": "Welcome Sir",
+      "type": "Receiver",
+    },
+    {
+      "text": " Thank you",
+      "type": "Sender",
+    }
+  ];
+
+  List<bool> isSelected = [true, false, false];
   int selectedIndex = 0;
   void initState() {
     super.initState();
@@ -27,6 +43,36 @@ class _CustomerServiceState extends State<CustomerService> {
       for (var i = 0; i < 3; i++) isSelected[i] = false;
       isSelected[index] = true;
     });
+  }
+
+  _sendMsg() {
+    setState(() {
+      messagesList.add(
+        {"text": messageController.text.toString(), "type": "Sender"},
+      );
+      isDisabled = true;
+    });
+
+    messageController.clear();
+    Timer(
+        Duration(milliseconds: 300),
+        () => _controller.animateTo(_controller.position.maxScrollExtent,
+            duration: Duration(milliseconds: 200), curve: Curves.linear));
+    Timer(Duration(seconds: 1), () {
+      setState(() {
+        messagesList.add(
+          {
+            "text":
+                "Thank you for reaching out. Someone will be with you shortly.",
+            "type": "Receiver"
+          },
+        );
+      });
+    });
+    Timer(
+        Duration(milliseconds: 1500),
+        () => _controller.animateTo(_controller.position.maxScrollExtent,
+            duration: Duration(milliseconds: 100), curve: Curves.linear));
   }
 
   @override
@@ -140,7 +186,10 @@ class _CustomerServiceState extends State<CustomerService> {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(30),
+                  padding: EdgeInsets.only(
+                    left: 30,
+                    right: 30,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,38 +216,22 @@ class _CustomerServiceState extends State<CustomerService> {
                         ),
                       ),
                       Container(
-                        height: 250,
-                        child: ListView(
-                          children: [
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                height: 76.00,
-                                width: 220.00,
-                                decoration: BoxDecoration(
-                                  color: Color(0xff1e4dff),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(9.00),
-                                    topRight: Radius.circular(9.00),
-                                    bottomRight: Radius.circular(9.00),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Text(
-                                      '''Thank you for reaching out.\nSomeone will be with you shortly.''',
-                                      style: TextStyle(
-                                        fontFamily: "Roboto",
-                                        fontSize: 16,
-                                        color: Color(0xffffffff),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                        height: getY(context) * 0.46,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: ListView.builder(
+                          controller: _controller,
+                          itemCount: messagesList.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: msgBox(
+                                messagesList[index]["text"],
+                                messagesList[index]["type"],
                               ),
-                            ),
-                          ],
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -238,7 +271,7 @@ class _CustomerServiceState extends State<CustomerService> {
                         padding: EdgeInsets.only(left: 20),
                         width: 270,
                         child: TextField(
-                          onChanged: setColor,
+                          onChanged: buttonState,
                           controller: messageController,
                           decoration: InputDecoration(
                             hintText: "Write a message ...",
@@ -247,11 +280,13 @@ class _CustomerServiceState extends State<CustomerService> {
                         ),
                       ),
                       IconButton(
+                        enableFeedback: true,
+                        disabledColor: Colors.grey,
+                        color: Colors.blue,
                         icon: Icon(
                           Icons.send,
-                          color: iconColor,
                         ),
-                        onPressed: null,
+                        onPressed: isDisabled ? null : _sendMsg,
                       )
                     ],
                   ),
@@ -264,12 +299,92 @@ class _CustomerServiceState extends State<CustomerService> {
     );
   }
 
-  void setColor(String message) {
+  void buttonState(String message) {
     setState(() {
       if (message.length > 0)
-        iconColor = Colors.blueAccent;
+        isDisabled = false;
       else
-        iconColor = Colors.grey;
+        isDisabled = true;
     });
+  }
+
+  Widget msgBox(String text, String type) {
+    return (type == "Receiver")
+        ? Align(
+            alignment: Alignment.centerLeft,
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.symmetric(vertical: 5),
+                constraints: BoxConstraints(
+                  maxWidth: 250,
+                  minWidth: 30,
+                ),
+                decoration: BoxDecoration(
+                  color: Color(0xffbbbbbb),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(18.00),
+                    topRight: Radius.circular(18.00),
+                    bottomRight: Radius.circular(18.00),
+                  ),
+                ),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16,
+                    color: Color(0xffffffff),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 3,
+              ),
+              Text(
+                df.format(new DateTime.now()),
+                style: TextStyle(color: Colors.grey, fontSize: 10),
+              ),
+            ]),
+          )
+        : Align(
+            alignment: Alignment.centerRight,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.symmetric(vertical: 5),
+                  constraints: BoxConstraints(
+                    maxWidth: 250,
+                    minWidth: 30,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0xff1e4dff),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(18.00),
+                      topRight: Radius.circular(18.00),
+                      bottomLeft: Radius.circular(18.00),
+                    ),
+                  ),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontFamily: "Roboto",
+                      fontSize: 16,
+                      color: Color(0xffffffff),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 1,
+                ),
+                Text(
+                  df.format(new DateTime.now()),
+                  style: TextStyle(color: Colors.grey, fontSize: 10),
+                ),
+              ],
+            ),
+          );
   }
 }

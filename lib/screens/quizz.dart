@@ -275,7 +275,7 @@ class QuizPage extends StatelessWidget {
                             size: 100,
                           ),
                     new Text(
-                      "Which of these pictures makes \nyou feel the most relaxed ?",
+                      this.question,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: "Roboto",

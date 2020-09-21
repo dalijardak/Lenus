@@ -1,3 +1,5 @@
+import 'package:Lenus_Final/models/user.dart';
+import 'package:Lenus_Final/services/user_service.dart';
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -8,13 +10,44 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool error = false;
+  bool isLoading = false;
 
   _validate() {
+    setState(() {
+      isLoading = true;
+      error = false;
+    });
+    User user = User(
+      email: emailController.text,
+      password: passwordController.text,
+    );
     if (_formKey.currentState.validate()) {
-      //To DO
-    }
+      logIn(user).then((value) {
+        setState(() {
+          isLoading = false;
+        });
+        if (value == null)
+          setState(() {
+            error = true;
+          });
+        else {
+          setState(() {
+            error = false;
+          });
+          Navigator.pushNamed(context, "/Home");
+        }
+      }).catchError(
+        (error) => print(
+          error.toString(),
+        ),
+      );
+    } else
+      setState(() {
+        isLoading = false;
+      });
   }
 
   @override
@@ -63,14 +96,14 @@ class _LoginPageState extends State<LoginPage> {
                 Form(
                   key: _formKey,
                   child: Container(
-                    height: getY(context) * 0.2,
+                    height: getY(context) * 0.22,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         TextFormField(
-                          controller: usernameController,
+                          controller: emailController,
                           decoration: InputDecoration(
-                            labelText: "Username",
+                            labelText: "Email",
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0xff000000),
@@ -79,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
-                              return "Username is required";
+                              return "Email is required";
                             }
                             return null;
                           },
@@ -116,34 +149,53 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: getY(context) * 0.15,
-                  ),
-                  child: InkWell(
-                    onTap: _validate,
-                    child: InkWell(
-                      onTap: () => Navigator.pushNamed(context, "/Home"),
-                      child: Container(
-                        height: 46.00,
-                        width: 257.00,
-                        decoration: BoxDecoration(
-                          color: Color(0xff1e4dff),
-                          borderRadius: BorderRadius.circular(25.00),
-                        ),
-                        child: Center(
-                          child: new Text(
-                            "Sign In",
+                error
+                    ? Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Text(
+                            "Please verify your Email or Password",
                             style: TextStyle(
-                              fontFamily: "Roboto",
-                              fontSize: 18,
-                              color: Color(0xffffffff),
+                              color: Colors.red,
+                              fontSize: 12,
                             ),
                           ),
                         ),
+                      )
+                    : SizedBox(
+                        height: 20,
                       ),
-                    ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: getY(context) * 0.14,
                   ),
+                  child: isLoading
+                      ? CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.blue),
+                        )
+                      : InkWell(
+                          onTap: () => Navigator.pushNamed(context, "/Home"),
+                          child: Container(
+                            height: 46.00,
+                            width: 257.00,
+                            decoration: BoxDecoration(
+                              color: Color(0xff1e4dff),
+                              borderRadius: BorderRadius.circular(25.00),
+                            ),
+                            child: Center(
+                              child: new Text(
+                                "Sign In",
+                                style: TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 18,
+                                  color: Color(0xffffffff),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 10),

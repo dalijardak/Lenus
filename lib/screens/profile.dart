@@ -116,8 +116,13 @@ class _ProfileState extends State<Profile> {
                       padding: EdgeInsets.all(15),
                       children: [
                         elementInfo(
-                          "Name",
-                          snapshot.data.name,
+                          "First Name",
+                          snapshot.data.firstName,
+                          context,
+                        ),
+                        elementInfo(
+                          "Last Name",
+                          snapshot.data.firstName,
                           context,
                         ),
                         elementInfo(
@@ -126,8 +131,8 @@ class _ProfileState extends State<Profile> {
                           context,
                         ),
                         elementInfo(
-                          "Phone",
-                          snapshot.data.phone,
+                          "Country",
+                          snapshot.data.country,
                           context,
                         ),
                         elementInfo(

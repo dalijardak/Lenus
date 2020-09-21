@@ -1,3 +1,5 @@
+import 'package:Lenus_Final/models/user.dart';
+import 'package:Lenus_Final/services/user_service.dart';
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -10,11 +12,20 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   validate() {
     if (_formKey.currentState.validate()) {
-      //To DO
+      createUser(
+        User(
+          username: usernameController.text,
+          email: emailController.text,
+          password: passwordController.text,
+        ),
+      );
+      Navigator.pushNamed(context, "Questions");
     }
   }
 
@@ -95,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Form(
                 key: _formKey,
                 child: Container(
-                  height: getY(context) * 0.4,
+                  height: getY(context) * 0.44,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -117,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                       ),
                       TextFormField(
-                        controller: passwordController,
+                        controller: emailController,
                         decoration: InputDecoration(
                           labelText: "Email",
                           enabledBorder: UnderlineInputBorder(
@@ -136,7 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       TextFormField(
                         controller: passwordController,
                         decoration: InputDecoration(
-                          labelText: "Confirm Password",
+                          labelText: " Password",
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xff000000),
@@ -151,7 +162,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                       ),
                       TextFormField(
-                        controller: passwordController,
+                        controller: confirmPasswordController,
                         decoration: InputDecoration(
                           labelText: "Confirm Password",
                           enabledBorder: UnderlineInputBorder(
@@ -163,6 +174,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         validator: (value) {
                           if (value.isEmpty) {
                             return "Password is required";
+                          }
+                          if (value != passwordController.text) {
+                            return "Not Match";
                           }
                           return null;
                         },
@@ -187,7 +201,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   top: getY(context) * 0.03,
                 ),
                 child: new InkWell(
-                  onTap: () => Navigator.pushNamed(context, "/Questions"),
+                  onTap: validate,
                   child: Container(
                     height: 46.00,
                     width: 257.00,
