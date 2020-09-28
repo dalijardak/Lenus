@@ -1,45 +1,74 @@
 import 'package:Lenus_Final/screens/congestion_details_page.dart';
+import 'package:Lenus_Final/services/occupation_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SliderItem extends StatefulWidget {
   final String title;
   final Color color;
   final IconData icon;
-  final double congestRate;
+  final double occupation;
 
   SliderItem({
     Key key,
     @required this.title,
     @required this.color,
     @required this.icon,
-    @required this.congestRate,
+    @required this.occupation,
   }) : super(key: key);
 
   @override
   _SliderItemState createState() => _SliderItemState();
 }
 
+IconData customIcon(String title) {
+  var icon;
+  switch (title) {
+    case "Reception":
+      icon = MaterialCommunityIcons.account_tie;
+      break;
+    case "Bar":
+      icon = Icons.local_bar;
+      break;
+    case "Gym":
+      icon = MaterialCommunityIcons.dumbbell;
+      break;
+    case "Restaurant":
+      icon = Icons.restaurant;
+      break;
+    case "Pool":
+      icon = Icons.pool;
+      break;
+    case "Spa":
+      icon = Icons.spa;
+      break;
+  }
+  return icon;
+}
+
 class _SliderItemState extends State<SliderItem> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Padding(
-        padding: EdgeInsets.only(top: 20, bottom: 20, right: 10, left: 5),
+    return Padding(
+      padding: EdgeInsets.only(top: 20, bottom: 20, right: 10, left: 5),
+      child: InkWell(
         child: Container(
           height: 150.00,
           width: 150.00,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 30, bottom: 10),
-                child: Icon(
-                  this.widget.icon,
-                  color: Colors.white,
-                  size: 50,
-                ),
+              Icon(
+                customIcon(this.widget.title),
+                color: Colors.white,
+                size: 50,
+              ),
+              SizedBox(
+                height: 10,
               ),
               Text(
-                "${TimeOfDay.now().format(context)}",
+                "${this.widget.title}",
                 style: TextStyle(
                   fontFamily: "Helvetica Neue",
                   fontWeight: FontWeight.w500,
@@ -47,17 +76,6 @@ class _SliderItemState extends State<SliderItem> {
                   color: Color(0xffffffff),
                 ),
               ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                "View details",
-                style: TextStyle(
-                  fontFamily: "Helvetica Neue",
-                  fontSize: 13,
-                  color: Color(0xffffffff).withOpacity(0.8),
-                ),
-              )
             ],
           ),
           decoration: BoxDecoration(
@@ -65,15 +83,17 @@ class _SliderItemState extends State<SliderItem> {
             borderRadius: BorderRadius.circular(18.00),
           ),
         ),
-      ),
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
             builder: (context) => CongestionDetails(
-                  title: this.widget.title,
-                  congestRate: this.widget.congestRate,
-                  color: this.widget.color,
-                )),
+              title: this.widget.title,
+              occupation: this.widget.occupation,
+              color: this.widget.color,
+            ),
+          ),
+        ),
+        onLongPress: () => fetchOccupation(),
       ),
     );
   }

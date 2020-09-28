@@ -122,7 +122,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         elementInfo(
                           "Last Name",
-                          snapshot.data.firstName,
+                          snapshot.data.lastName,
                           context,
                         ),
                         elementInfo(
@@ -133,11 +133,6 @@ class _ProfileState extends State<Profile> {
                         elementInfo(
                           "Country",
                           snapshot.data.country,
-                          context,
-                        ),
-                        elementInfo(
-                          "Address",
-                          "Albequerque",
                           context,
                         ),
                       ],

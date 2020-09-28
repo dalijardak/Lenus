@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.only(top: 30, left: 15),
               child: Text(
-                "See Congestion areas",
+                "See occupation areas",
                 style: TextStyle(
                   fontFamily: "Helvetica Neue",
                   fontWeight: FontWeight.w500,

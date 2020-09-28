@@ -57,7 +57,7 @@ class _CustomerServiceState extends State<CustomerService> {
     Timer(
         Duration(milliseconds: 300),
         () => _controller.animateTo(_controller.position.maxScrollExtent,
-            duration: Duration(milliseconds: 200), curve: Curves.linear));
+            duration: Duration(milliseconds: 100), curve: Curves.linear));
     Timer(Duration(seconds: 1), () {
       setState(() {
         messagesList.add(
@@ -78,6 +78,7 @@ class _CustomerServiceState extends State<CustomerService> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Container(
         height: MediaQuery.of(context).size.height * 0.9,
         width: MediaQuery.of(context).size.width,
@@ -237,14 +238,6 @@ class _CustomerServiceState extends State<CustomerService> {
                     ],
                   ),
                 ),
-              ),
-            ),
-            Positioned(
-              bottom: 108,
-              child: Container(
-                height: 1.00,
-                width: 412.00,
-                color: Color(0xffbebebe),
               ),
             ),
             Positioned.fill(

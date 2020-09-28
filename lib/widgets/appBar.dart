@@ -15,6 +15,10 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _MyAppBarState extends State<MyAppBar> {
+  TextEditingController searchController = new TextEditingController();
+  List<String> items = ["Restaurant", "Sports", "SPA"];
+  List<String> filtredItems = [];
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -27,6 +31,7 @@ class _MyAppBarState extends State<MyAppBar> {
               padding: EdgeInsets.only(left: 20),
               width: 200,
               child: TextFormField(
+                controller: searchController,
                 decoration: InputDecoration(
                     hintText: "Search",
                     icon: Icon(Icons.search),
@@ -87,4 +92,26 @@ class _MyAppBarState extends State<MyAppBar> {
             ),
     );
   }
+
+  Widget search() {
+    if (searchController.text.isNotEmpty) {
+      List<String> temp = new List<String>();
+      for (int i = 0; i < filtredItems.length; i++) {
+        if (filtredItems[i]
+            .toLowerCase()
+            .contains(searchController.text.toLowerCase())) {
+          temp.add(filtredItems[i]);
+        }
+      }
+      filtredItems = temp;
+    }
+    return ListView.builder(
+      itemCount: filtredItems.length,
+      itemBuilder: (context, index) => ListTile(
+        leading: Text(filtredItems[index]),
+      ),
+    );
+  }
+
+  void _searchPressed() {}
 }

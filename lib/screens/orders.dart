@@ -12,20 +12,47 @@ class _OrdersPageState extends State<OrdersPage> {
   final List orders = [
     {
       "name": "Chocolate Cake",
-      "price": "5",
-      "quantity": "3",
+      "price": 5,
+      "quantity": 3,
     },
     {
       "name": "Donuts ",
-      "price": "8",
-      "quantity": "1",
+      "price": 8,
+      "quantity": 1,
     },
     {
       "name": "Pizza",
-      "price": "16",
-      "quantity": "1",
+      "price": 16,
+      "quantity": 1,
     }
   ];
+
+  String sum() {
+    double s = 0;
+
+    setState(() {
+      for (var order in orders) s = s + order["price"] * order["quantity"];
+    });
+    return s.toString();
+  }
+
+  void incrementQuant(String name) {
+    setState(() {
+      for (var order in orders) {
+        if (order["name"] == name) order["quantity"]++;
+      }
+    });
+  }
+
+  void decrementQuant(String name) {
+    setState(() {
+      for (var order in orders) {
+        if (order["name"] == name) if (order["quantity"] > 1)
+          order["quantity"]--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,9 +127,9 @@ class _OrdersPageState extends State<OrdersPage> {
                         price: double.parse(
                           orders[index]["price"].toString(),
                         ),
-                        quantity: int.parse(
-                          orders[index]["quantity"].toString(),
-                        ),
+                        quantity: orders[index]["quantity"],
+                        increment: () => incrementQuant(orders[index]["name"]),
+                        decrement: () => decrementQuant(orders[index]["name"]),
                       ),
                     );
                   },
@@ -124,7 +151,7 @@ class _OrdersPageState extends State<OrdersPage> {
                       ),
                     ),
                     new Text(
-                      "15\$",
+                      sum() + " \$",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: "Roboto",
@@ -148,11 +175,15 @@ class OrderItem extends StatefulWidget {
   final String name;
   final double price;
   final int quantity;
+  final dynamic increment;
+  final dynamic decrement;
 
   OrderItem({
     this.name,
     this.price,
     this.quantity,
+    this.increment,
+    this.decrement,
   });
   @override
   _OrderItemState createState() => _OrderItemState();
@@ -168,7 +199,7 @@ class _OrderItemState extends State<OrderItem> {
         width: getX(context) * 0.8,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Color(0xff1e4dff),
+          color: Color(0xffBEBEBE),
           borderRadius: BorderRadius.circular(18.00),
         ),
         child: Row(
@@ -185,16 +216,16 @@ class _OrderItemState extends State<OrderItem> {
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
-                    color: Color(0xffffffff),
+                    color: Colors.black,
                   ),
                 ),
                 new Text(
-                  "${this.widget.price.toInt().toString()}\$",
+                  "${this.widget.price.toInt().toString()} \$",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Roboto",
                     fontSize: 14,
-                    color: Color(0xffffffff),
+                    color: Color(0xff1E4DFF),
                   ),
                 )
               ],
@@ -205,11 +236,11 @@ class _OrderItemState extends State<OrderItem> {
               children: [
                 Icon(
                   MdiIcons.trashCan,
-                  color: Colors.white,
+                  color: Color(0xff1E4DFF),
                   size: 20,
                 ),
                 Container(
-                  width: 120,
+                  width: 130,
                   height: 40,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -220,7 +251,7 @@ class _OrderItemState extends State<OrderItem> {
                           color: Colors.white,
                           size: 30,
                         ),
-                        onPressed: null,
+                        onPressed: this.widget.decrement,
                       ),
                       Text(
                         this.widget.quantity.toString(),
@@ -237,7 +268,7 @@ class _OrderItemState extends State<OrderItem> {
                           color: Colors.white,
                           size: 30,
                         ),
-                        onPressed: null,
+                        onPressed: this.widget.increment,
                       ),
                     ],
                   ),

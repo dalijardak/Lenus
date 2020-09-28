@@ -3,6 +3,8 @@ import 'package:Lenus_Final/screens/booking_page.dart';
 import 'package:Lenus_Final/screens/feedback.dart';
 import 'package:Lenus_Final/screens/gift_page.dart';
 import 'package:Lenus_Final/screens/questions.dart';
+import 'package:Lenus_Final/screens/reminders.dart';
+import 'package:Lenus_Final/screens/reservation_code_page.dart';
 import 'package:Lenus_Final/screens/sign_in.dart';
 import 'package:Lenus_Final/screens/orders.dart';
 import 'package:Lenus_Final/screens/profile.dart';
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => Auth(),
         '/Login': (context) => LoginPage(),
         '/SignUp': (context) => SignUpPage(),
+        "/ReservationCodePage": (context) => ReservationCodePage(),
         '/Questions': (context) => QuestionsPage(),
         '/Home': (context) => UserScreen(),
         '/Feedback': (context) => FeedbackPage(),

@@ -1,3 +1,4 @@
+import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -47,8 +48,8 @@ class _FoodCategoriesDetailsState extends State<FoodCategoriesDetails> {
             Positioned(
               top: 0,
               child: Container(
-                height: 400,
-                width: 400,
+                height: getY(context) * 0.56,
+                width: getX(context),
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(this.widget.image),
@@ -60,7 +61,7 @@ class _FoodCategoriesDetailsState extends State<FoodCategoriesDetails> {
             Positioned(
               bottom: 0,
               child: Container(
-                height: 450.00,
+                height: getY(context) * 0.5,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,17 +127,6 @@ class _FoodCategoriesDetailsState extends State<FoodCategoriesDetails> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10, right: 220),
-                      child: Text(
-                        "Details",
-                        style: TextStyle(
-                          fontFamily: "Roboto",
-                          fontSize: 18,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
                 decoration: BoxDecoration(
@@ -151,7 +141,7 @@ class _FoodCategoriesDetailsState extends State<FoodCategoriesDetails> {
             Positioned(
               bottom: 0,
               child: Container(
-                height: 250.00,
+                height: getY(context) * 0.3,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,

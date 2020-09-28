@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
           setState(() {
             error = false;
           });
-          Navigator.pushNamed(context, "/Home");
+          Navigator.pushNamed(context, "/ReservationCodePage");
         }
       }).catchError(
         (error) => print(
@@ -62,7 +62,6 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            height: getY(context),
             width: getX(context),
             padding:
                 EdgeInsets.only(top: getY(context) * 0.1, right: 20, left: 20),
@@ -176,9 +175,9 @@ class _LoginPageState extends State<LoginPage> {
                               AlwaysStoppedAnimation<Color>(Colors.blue),
                         )
                       : InkWell(
-                          onTap: () => Navigator.pushNamed(context, "/Home"),
+                          onTap: () => _validate(),
                           child: Container(
-                            height: 46.00,
+                            height: getY(context) * 0.06,
                             width: 257.00,
                             decoration: BoxDecoration(
                               color: Color(0xff1e4dff),
@@ -200,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: Container(
-                    height: 30,
+                    height: getY(context) * 0.05,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

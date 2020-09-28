@@ -29,7 +29,7 @@ class User {
     return User(
       email: json["email"] as String,
       accessToken: json["accesToken"] as String,
-      firstName: json["name"] as String,
+      firstName: json["firstName"] as String,
       lastName: json["lastName"] as String,
       password: json["password"] as String,
       imgUrl: json["imageUrl"] as String,
@@ -63,5 +63,10 @@ class User {
   Map<String, dynamic> logIn() => {
         "email": email,
         "password": password,
+      };
+
+  Map<String, dynamic> profile() => {
+        "firstName": firstName,
+        "lastName": password,
       };
 }

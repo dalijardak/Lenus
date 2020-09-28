@@ -247,7 +247,7 @@ class QuizPage extends StatelessWidget {
         ),
       ),
       child: Stack(
-        alignment: Alignment.center,
+        alignment: Alignment.bottomCenter,
         children: [
           Positioned(
             top: getY(context) * 0.07,
@@ -255,14 +255,14 @@ class QuizPage extends StatelessWidget {
             child: Icon(
               MdiIcons.windowClose,
               color: Colors.white,
-              size: 34,
+              size: getY(context) * 0.05,
             ),
           ),
           Positioned(
-            bottom: getY(context) * 0.1,
             child: Align(
+              alignment: Alignment.bottomCenter,
               child: Container(
-                height: getY(context) * 0.75,
+                height: getY(context) * 0.85,
                 width: getX(context),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -272,7 +272,7 @@ class QuizPage extends StatelessWidget {
                         : Icon(
                             icon,
                             color: Colors.blue,
-                            size: 100,
+                            size: getY(context) * 0.12,
                           ),
                     new Text(
                       this.question,
@@ -285,18 +285,19 @@ class QuizPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: getY(context) * 0.5,
+                      height: getY(context) * 0.6,
                       child: GridView.count(
+                        physics: NeverScrollableScrollPhysics(),
                         primary: false,
                         padding: const EdgeInsets.all(20),
                         crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 2,
+                        crossAxisSpacing: 2,
                         children: [
-                          image(imageUrl_1),
-                          image(imageUrl_2),
-                          image(imageUrl_3),
-                          image(imageUrl_4),
+                          image(imageUrl_1, context),
+                          image(imageUrl_2, context),
+                          image(imageUrl_3, context),
+                          image(imageUrl_4, context),
                         ],
                       ),
                     ),
@@ -310,12 +311,12 @@ class QuizPage extends StatelessWidget {
     );
   }
 
-  Widget image(String imgurl) {
+  Widget image(String imgurl, BuildContext context) {
     return InkWell(
       child: Align(
         child: Container(
-          height: 130.00,
-          width: 130.00,
+          height: getY(context) * 0.21,
+          width: getY(context) * 0.21,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(imgurl),

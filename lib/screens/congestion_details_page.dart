@@ -6,12 +6,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 class CongestionDetails extends StatelessWidget {
   final String title;
   final Color color;
-  final double congestRate;
+  final double occupation;
 
   CongestionDetails({
     this.title,
     this.color,
-    this.congestRate,
+    this.occupation,
   });
 
   @override
@@ -65,9 +65,9 @@ class CongestionDetails extends StatelessWidget {
                       CircularPercentIndicator(
                         radius: 60.0,
                         lineWidth: 5.0,
-                        percent: this.congestRate,
+                        percent: this.occupation,
                         center: Text(
-                          "${(this.congestRate * 100).round()} %",
+                          "${(this.occupation * 100).round()} %",
                           style: TextStyle(
                               fontFamily: "Helvetica Neue",
                               fontWeight: FontWeight.w500,
@@ -96,7 +96,7 @@ class CongestionDetails extends StatelessWidget {
                   ),
                 ),
               ),
-              estimatedTime(this.congestRate),
+              estimatedTime(this.occupation),
               body(this.title),
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 20),
@@ -118,8 +118,8 @@ class CongestionDetails extends StatelessWidget {
   }
 }
 
-Widget estimatedTime(double congestRate) {
-  if (congestRate < 0.5)
+Widget estimatedTime(double occupation) {
+  if (occupation < 0.5)
     return SizedBox(
       height: 100,
     );

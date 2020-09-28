@@ -13,9 +13,9 @@ class DiscoverItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Padding(
-        padding: EdgeInsets.only(top: 20, bottom: 20, right: 10, left: 5),
+    return Padding(
+      padding: EdgeInsets.only(top: 20, bottom: 20, right: 10, left: 5),
+      child: InkWell(
         child: Container(
           height: 180.00,
           width: 145.00,
@@ -48,8 +48,8 @@ class DiscoverItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(18.00),
           ),
         ),
+        onTap: this.onTap,
       ),
-      onTap: this.onTap,
     );
   }
 }

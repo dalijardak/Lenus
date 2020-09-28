@@ -20,6 +20,11 @@ class _UserScreenState extends State<UserScreen> {
   PageController pageController;
   GlobalKey bottomNavigationKey = GlobalKey();
   int selectedIndex = 0;
+  bool isSearching = false;
+  bool isDisabled = false;
+  TextEditingController searchController = new TextEditingController();
+  List<String> items = ["Restaurant", "Sports", "SPA"];
+  List<String> filtredItems = ["Restaurant", "Sports", "SPA"];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -41,86 +46,215 @@ class _UserScreenState extends State<UserScreen> {
     super.dispose();
   }
 
-  List<Widget> screens = [
-    HomePage(),
-    CustomerService(),
-    Text("Profile"),
-  ];
-
-  bool isDisabled = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: isDisabled
-          ? PreferredSize(
-              child: Container(),
-              preferredSize: Size(0.0, 0.0),
-            )
-          : MyAppBar(
-              returnIcon: false,
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: isDisabled
+            ? PreferredSize(
+                child: Container(),
+                preferredSize: Size(0.0, 0.0),
+              )
+            : AppBar(
+                backgroundColor: Colors.white,
+                title: Container(
+                  height: 38.00,
+                  width: MediaQuery.of(context).size.width * 0.75,
+                  decoration: BoxDecoration(
+                    color: Color(0xffffffff),
+                    borderRadius: BorderRadius.circular(20.00),
+                    border: Border.all(
+                      color: Color.fromARGB(90, 112, 112, 112),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 200,
+                        child: TextFormField(
+                          controller: searchController,
+                          onChanged: searchPressed,
+                          decoration: InputDecoration(
+                            hintText: "Search",
+                            prefixIcon: isSearching
+                                ? IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    enableFeedback: true,
+                                    icon: Icon(Icons.close),
+                                    onPressed: () {
+                                      searchController.clear();
+                                      setState(() {
+                                        isSearching = false;
+                                      });
+                                    },
+                                  )
+                                : IconButton(
+                                    icon: Icon(Icons.search),
+                                    padding: EdgeInsets.all(0),
+                                    onPressed: () {},
+                                  ),
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                centerTitle: true,
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: InkWell(
+                        child: Container(
+                          height: 36,
+                          width: 36,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/heisenberg.jpeg"),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        onTap: () => Navigator.pushNamed(context, "/Profile"),
+                      ),
+                    ),
+                  ),
+                ],
+                leading: Builder(
+                  builder: (context) => IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      color: Colors.black,
+                    ),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                  ),
+                ),
+              ),
+        drawer: MyDrawer(),
+        body: isSearching
+            ? Container(
+                child: search(),
+              )
+            : PageView(
+                controller: pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    selectedIndex = index;
+                    if (selectedIndex == 1 || selectedIndex == 2)
+                      isDisabled = true;
+                    else
+                      isDisabled = false;
+                  });
+                },
+                children: <Widget>[
+                  HomePage(),
+                  CustomerService(),
+                  QuizGame(),
+                  Center(
+                    child: Text("Notifications"),
+                  ),
+                ],
+              ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              title: Text(
+                "Home",
+              ),
+              icon: Icon(
+                Icons.home,
+              ),
             ),
-      drawer: MyDrawer(),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: (index) {
-          setState(() {
-            selectedIndex = index;
-            if (selectedIndex == 1 || selectedIndex == 2)
-              isDisabled = true;
-            else
-              isDisabled = false;
-          });
-        },
-        children: <Widget>[
-          HomePage(),
-          CustomerService(),
-          QuizGame(),
-          Center(
-            child: Text("Notifications"),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            title: Text(
-              "Home",
+            BottomNavigationBarItem(
+              title: Text(
+                "Chat",
+              ),
+              icon: Icon(
+                MdiIcons.chatProcessingOutline,
+              ),
             ),
-            icon: Icon(
-              Icons.home,
+            BottomNavigationBarItem(
+              title: Text(
+                "Quizz",
+              ),
+              icon: Icon(
+                Ionicons.logo_game_controller_b,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            title: Text(
-              "Chat",
+            BottomNavigationBarItem(
+              title: Text(
+                "Notifications",
+              ),
+              icon: Icon(
+                Icons.notifications,
+              ),
             ),
-            icon: Icon(
-              MdiIcons.chatProcessingOutline,
-            ),
-          ),
-          BottomNavigationBarItem(
-            title: Text(
-              "Quizz",
-            ),
-            icon: Icon(
-              Ionicons.logo_game_controller_b,
-            ),
-          ),
-          BottomNavigationBarItem(
-            title: Text(
-              "Notifications",
-            ),
-            icon: Icon(
-              Icons.notifications,
-            ),
-          ),
-        ],
-        selectedItemColor: Color(0xff1E4DFF),
-        currentIndex: selectedIndex,
-        onTap: _onItemTapped,
+          ],
+          selectedItemColor: Color(0xff1E4DFF),
+          currentIndex: selectedIndex,
+          onTap: _onItemTapped,
+        ),
       ),
     );
+  }
+
+  Widget search() {
+    getItems();
+    if (searchController.text.isNotEmpty) {
+      List<String> temp = new List<String>();
+      for (int i = 0; i < filtredItems.length; i++) {
+        if (filtredItems[i].toLowerCase().contains(
+              searchController.text.toLowerCase(),
+            )) {
+          temp.add(filtredItems[i]);
+        }
+      }
+      filtredItems = temp;
+    }
+    return ListView.builder(
+      itemCount: filtredItems.length,
+      itemBuilder: (context, index) => ListTile(
+          leading: Icon(Icons.search),
+          title: Text(
+            filtredItems[index],
+            style: TextStyle(color: Colors.black),
+          ),
+          onTap: () {
+            searchController.clear();
+            FocusScope.of(context).unfocus();
+            setState(() {
+              isSearching = false;
+            });
+            Navigator.pushNamed(context, "/${filtredItems[index]}");
+          }),
+    );
+  }
+
+  void searchPressed(String text) {
+    setState(() {
+      if (text.isNotEmpty) {
+        isSearching = true;
+      } else
+        isSearching = false;
+    });
+  }
+
+  void getItems() {
+    setState(() {
+      filtredItems = items;
+    });
   }
 }

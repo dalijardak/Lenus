@@ -2,17 +2,17 @@ import 'package:Lenus_Final/util/descriptions/food_description.dart';
 
 const List<Map<String, dynamic>> breakfast = [
   {
-    "title": "English Breakfast",
+    "title": " Coffe",
     "image_url": "assets/images/english_breakfast.jpg",
     "description": english_breakfast,
   },
   {
-    "title": "Continental Breakfast",
+    "title": "Fruits",
     "image_url": "assets/images/continental_breakfast.jpg",
     "description": continental_breakfast,
   },
   {
-    "title": "American Breakfast",
+    "title": "Juice",
     "image_url": "assets/images/american_breakfast.jpg",
     "description": american_breakfast,
   },
@@ -20,8 +20,8 @@ const List<Map<String, dynamic>> breakfast = [
 
 const List<Map<String, dynamic>> lunch = [
   {
-    "title": "Healthy Lunch",
-    "image_url": "assets/images/healthy_lunch.jpg",
+    "title": "Pizza",
+    "image_url": "assets/images/italian_pizza.jpg",
     "description": healthy_lunch,
   },
   {
@@ -48,7 +48,7 @@ const List<Map<String, dynamic>> dinner = [
     "description": "",
   },
   {
-    "title": "Toast",
+    "title": "Omlette",
     "image_url": "assets/images/toast.jpg",
     "description": toast,
   },

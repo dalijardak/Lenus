@@ -1,4 +1,5 @@
 import 'package:Lenus_Final/screens/home_page.dart';
+import 'package:Lenus_Final/screens/reminders.dart';
 import 'package:Lenus_Final/screens/user_screen.dart';
 import 'package:Lenus_Final/screens/welcome_page.dart';
 import 'package:Lenus_Final/services/user_service.dart';
@@ -36,7 +37,7 @@ class _AuthState extends State<Auth> {
       (value) => value
           ? Navigator.of(context).push(
               _createRoute(
-                UserScreen(),
+                ReminderPage(),
               ),
             )
           : Navigator.of(context).push(
