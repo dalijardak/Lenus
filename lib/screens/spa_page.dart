@@ -1,8 +1,82 @@
+import 'package:Lenus_Final/models/order.dart';
+import 'package:Lenus_Final/services/order_service.dart';
 import 'package:Lenus_Final/util/descriptions/spa_description.dart';
+import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 
-class SPADetailsPage extends StatelessWidget {
+class SPADetailsPage extends StatefulWidget {
+  @override
+  _SPADetailsPageState createState() => _SPADetailsPageState();
+}
+
+class _SPADetailsPageState extends State<SPADetailsPage> {
+  void _validate() {
+    bool send = false;
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              title: Text("SPA"),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    send
+                        ? FutureBuilder<bool>(
+                            future: sendOrder(
+                              Order(
+                                name: "SPA",
+                                quantity: 1,
+                                price: 20,
+                              ),
+                            ),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text("Order Sent Successfully");
+                              }
+                              return Container(
+                                width: getX(context),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.blue),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        : Text("Confirm Order ?"),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                send
+                    ? FlatButton(
+                        child: Text('Done'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      )
+                    : FlatButton(
+                        child: Text('Confirm'),
+                        onPressed: () {
+                          setState(() {
+                            send = true;
+                          });
+                        },
+                      )
+              ],
+            );
+          });
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,8 +87,8 @@ class SPADetailsPage extends StatelessWidget {
             Positioned(
               top: 0,
               child: Container(
-                height: 400,
-                width: 400,
+                height: getY(context) * 0.5,
+                width: getX(context),
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/images/spa.jpg"),
@@ -26,13 +100,13 @@ class SPADetailsPage extends StatelessWidget {
             Positioned(
               bottom: 0,
               child: Container(
-                height: 450.00,
+                height: getY(context) * 0.57,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 30),
+                      padding: EdgeInsets.only(top: 20),
                       child: Text(
                         "Spa and Beauty",
                         style: TextStyle(
@@ -83,7 +157,7 @@ class SPADetailsPage extends StatelessWidget {
             Positioned(
               bottom: 0,
               child: Container(
-                height: 250.00,
+                height: getY(context) * 0.32,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -121,24 +195,27 @@ class SPADetailsPage extends StatelessWidget {
               bottom: 30,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 35.00,
-                  width: 220.00,
-                  decoration: BoxDecoration(
-                    color: Color(0xff1e4dff),
-                    borderRadius: BorderRadius.circular(25.00),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Booking",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16,
-                        color: Color(0xffffffff),
+                child: InkWell(
+                  child: Container(
+                    height: 35.00,
+                    width: getY(context) * 0.3,
+                    decoration: BoxDecoration(
+                      color: Color(0xff1e4dff),
+                      borderRadius: BorderRadius.circular(25.00),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Booking",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontSize: 16,
+                          color: Color(0xffffffff),
+                        ),
                       ),
                     ),
                   ),
+                  onTap: _validate,
                 ),
               ),
             ),

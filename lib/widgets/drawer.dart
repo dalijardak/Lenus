@@ -1,3 +1,4 @@
+import 'package:Lenus_Final/services/user_service.dart';
 import "package:flutter/material.dart";
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -64,9 +65,12 @@ class MyDrawer extends StatelessWidget {
               },
             ),
             _createDrawerItem(
-              icon: MdiIcons.logout,
-              text: "Log Out",
-            )
+                icon: MdiIcons.logout,
+                text: "Log Out",
+                onTap: () {
+                  logOut();
+                  Navigator.pushNamed(context, "/Login");
+                })
           ],
         ),
       ),

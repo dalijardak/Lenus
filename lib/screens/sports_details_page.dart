@@ -1,7 +1,10 @@
+import 'package:Lenus_Final/models/order.dart';
+import 'package:Lenus_Final/services/order_service.dart';
+import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 
-class SportsDetails extends StatelessWidget {
+class SportsDetails extends StatefulWidget {
   final String title;
   final String fees;
   final String description;
@@ -14,6 +17,70 @@ class SportsDetails extends StatelessWidget {
     this.image,
   });
   @override
+  _SportsDetailsState createState() => _SportsDetailsState();
+}
+
+class _SportsDetailsState extends State<SportsDetails> {
+  void _validate() {
+    bool send = false;
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              title: Text(this.widget.title),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    send
+                        ? FutureBuilder<bool>(
+                            future: sendOrder(
+                              Order(
+                                name: this.widget.title,
+                                quantity: 1,
+                                price: 2.5,
+                              ),
+                            ),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(snapshot.data.toString());
+                              }
+                              return Container(
+                                width: getX(context),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.blue),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        : Text("Confirm Order ?"),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Confirm'),
+                  onPressed: () {
+                    setState(() {
+                      send = true;
+                    });
+                  },
+                ),
+              ],
+            );
+          });
+        });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -24,11 +91,11 @@ class SportsDetails extends StatelessWidget {
             Positioned(
               top: 0,
               child: Container(
-                height: 400,
-                width: 400,
+                height: getY(context) * 0.5,
+                width: getX(context),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: this.image,
+                    image: this.widget.image,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -37,7 +104,7 @@ class SportsDetails extends StatelessWidget {
             Positioned(
               bottom: 0,
               child: Container(
-                height: 400.00,
+                height: getY(context) * 0.57,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,7 +112,7 @@ class SportsDetails extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 30),
                       child: Text(
-                        this.title,
+                        this.widget.title,
                         style: TextStyle(
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.w700,
@@ -57,7 +124,7 @@ class SportsDetails extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 7),
                       child: Text(
-                        this.fees,
+                        this.widget.fees,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: "Roboto",
@@ -72,7 +139,7 @@ class SportsDetails extends StatelessWidget {
                         "Details",
                         style: TextStyle(
                           fontFamily: "Roboto",
-                          fontSize: 18,
+                          fontSize: 14,
                           color: Color(0xffffffff),
                         ),
                       ),
@@ -104,11 +171,11 @@ class SportsDetails extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 20, right: 20, top: 60),
                     child: new Text(
-                      this.description,
+                      this.widget.description,
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontFamily: "Roboto",
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Color(0xff000000),
                       ),
                     ),
@@ -116,7 +183,7 @@ class SportsDetails extends StatelessWidget {
                 ),
               ),
             ),
-            this.fees == "Free"
+            this.widget.fees == "Free"
                 ? Container(
                     height: 0,
                   )
@@ -124,24 +191,27 @@ class SportsDetails extends StatelessWidget {
                     bottom: 30,
                     child: Align(
                       alignment: Alignment.bottomCenter,
-                      child: Container(
-                        height: 46.00,
-                        width: 257.00,
-                        decoration: BoxDecoration(
-                          color: Color(0xff1e4dff),
-                          borderRadius: BorderRadius.circular(25.00),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Booking",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: "Roboto",
-                              fontSize: 18,
-                              color: Color(0xffffffff),
+                      child: InkWell(
+                        child: Container(
+                          height: 35,
+                          width: getY(context) * 0.3,
+                          decoration: BoxDecoration(
+                            color: Color(0xff1e4dff),
+                            borderRadius: BorderRadius.circular(25.00),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Booking",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: "Roboto",
+                                fontSize: 18,
+                                color: Color(0xffffffff),
+                              ),
                             ),
                           ),
                         ),
+                        onTap: _validate,
                       ),
                     ),
                   ),

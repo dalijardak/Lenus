@@ -1,3 +1,5 @@
+import 'package:Lenus_Final/models/order.dart';
+import 'package:Lenus_Final/services/order_service.dart';
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
@@ -7,7 +9,7 @@ class FoodCategoriesDetails extends StatefulWidget {
   final String title;
   final String image;
   final String description;
-  final String price;
+  final double price;
 
   FoodCategoriesDetails({
     this.title,
@@ -21,7 +23,7 @@ class FoodCategoriesDetails extends StatefulWidget {
 }
 
 class _FoodCategoriesDetailsState extends State<FoodCategoriesDetails> {
-  int _quantity = 0;
+  int _quantity = 1;
 
   void incrementQuantity() {
     setState(() {
@@ -36,6 +38,72 @@ class _FoodCategoriesDetailsState extends State<FoodCategoriesDetails> {
       else
         return null;
     });
+  }
+
+  void _validate() {
+    bool send = false;
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              title: Text(_quantity.toString() + " x " + this.widget.title),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    send
+                        ? FutureBuilder<bool>(
+                            future: sendOrder(
+                              Order(
+                                name: this.widget.title,
+                                quantity: _quantity,
+                                price: this.widget.price,
+                              ),
+                            ),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text("Order Sent Successfully");
+                              }
+                              return Container(
+                                width: getX(context),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.blue),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        : Text("Confirm Order ?"),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                send
+                    ? FlatButton(
+                        child: Text('Done'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      )
+                    : FlatButton(
+                        child: Text('Confirm'),
+                        onPressed: () {
+                          setState(() {
+                            send = true;
+                          });
+                        },
+                      )
+              ],
+            );
+          });
+        });
   }
 
   @override
@@ -81,7 +149,7 @@ class _FoodCategoriesDetailsState extends State<FoodCategoriesDetails> {
                     Padding(
                       padding: EdgeInsets.only(top: 5),
                       child: new Text(
-                        "${this.widget.price}\$",
+                        "${this.widget.price.toString()}\$",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: "Roboto",
@@ -198,24 +266,27 @@ class _FoodCategoriesDetailsState extends State<FoodCategoriesDetails> {
               bottom: 30,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 35.00,
-                  width: 220.00,
-                  decoration: BoxDecoration(
-                    color: Color(0xff1e4dff),
-                    borderRadius: BorderRadius.circular(25.00),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Order",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16,
-                        color: Color(0xffffffff),
+                child: InkWell(
+                  child: Container(
+                    height: 35.00,
+                    width: getX(context) * 0.55,
+                    decoration: BoxDecoration(
+                      color: Color(0xff1e4dff),
+                      borderRadius: BorderRadius.circular(25.00),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Order",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontSize: 16,
+                          color: Color(0xffffffff),
+                        ),
                       ),
                     ),
                   ),
+                  onTap: _validate,
                 ),
               ),
             ),

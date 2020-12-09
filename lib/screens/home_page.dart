@@ -1,6 +1,7 @@
 import 'package:Lenus_Final/widgets/congestionSlider.dart';
 import 'package:Lenus_Final/widgets/discover_slider.dart';
 import 'package:Lenus_Final/widgets/reccom_slide.dart';
+import 'package:Lenus_Final/services/user_service.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
 
@@ -25,15 +26,19 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 15, top: 15),
-                  child: Text(
-                    "HELLO \nUSER NAME",
-                    style: TextStyle(
-                      fontFamily: "Myriad Pro",
-                      fontWeight: FontWeight.w700,
-                      fontSize: 24,
-                      color: Color(0xff2f2f30),
-                    ),
-                  ),
+                  child: FutureBuilder(
+                      future: getName(),
+                      builder: (context, snapshot) {
+                        return Text(
+                          "HELLO \n${snapshot.data}",
+                          style: TextStyle(
+                            fontFamily: "Myriad Pro",
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24,
+                            color: Color(0xff2f2f30),
+                          ),
+                        );
+                      }),
                 ),
               ],
             ),

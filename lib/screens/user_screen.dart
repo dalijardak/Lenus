@@ -1,6 +1,5 @@
 import 'package:Lenus_Final/screens/customer_service.dart';
 import 'package:Lenus_Final/screens/quizz.dart';
-import 'package:Lenus_Final/widgets/appBar.dart';
 import 'package:Lenus_Final/widgets/drawer.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
@@ -162,44 +161,27 @@ class _UserScreenState extends State<UserScreen> {
                   HomePage(),
                   CustomerService(),
                   QuizGame(),
-                  Center(
-                    child: Text("Notifications"),
-                  ),
                 ],
               ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              title: Text(
-                "Home",
-              ),
+              label: "Home",
               icon: Icon(
                 Icons.home,
               ),
             ),
             BottomNavigationBarItem(
-              title: Text(
-                "Chat",
-              ),
+              label: "Chat",
               icon: Icon(
                 MdiIcons.chatProcessingOutline,
               ),
             ),
             BottomNavigationBarItem(
-              title: Text(
-                "Quizz",
-              ),
+              label: "Quizz",
               icon: Icon(
                 Ionicons.logo_game_controller_b,
-              ),
-            ),
-            BottomNavigationBarItem(
-              title: Text(
-                "Notifications",
-              ),
-              icon: Icon(
-                Icons.notifications,
               ),
             ),
           ],

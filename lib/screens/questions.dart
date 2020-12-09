@@ -1,3 +1,4 @@
+import 'package:Lenus_Final/services/user_service.dart';
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
@@ -56,16 +57,19 @@ class _QuestionsPageState extends State<QuestionsPage> {
               question: "Do you suffer from\n any kind of illness ?",
               imgUrl: "assets/backgrounds/qs1.png",
               onTap: _onItemTapped,
+              type: "Illness",
             ),
             Question(
               question: "Do you suffer from\n any kind of allergies ?",
               imgUrl: "assets/backgrounds/qs2.png",
               onTap: _onItemTapped,
+              type: "Allergies",
             ),
             Question(
               question: "Do you have any form\n of phobias ?",
               imgUrl: "assets/backgrounds/qs2.png",
               onTap: _onItemTapped,
+              type: "Phobias",
             ),
             Processing(),
           ],
@@ -76,11 +80,13 @@ class _QuestionsPageState extends State<QuestionsPage> {
 }
 
 class Question extends StatefulWidget {
+  final String type;
   final String question;
   final String imgUrl;
-  final dynamic onTap;
+  final Function onTap;
 
   Question({
+    this.type,
     this.question,
     this.imgUrl,
     this.onTap,
@@ -93,7 +99,7 @@ class _QuestionState extends State<Question> {
   bool isEnabled = false;
   Color yesButtonColor = Colors.grey;
   Color noButtonColor = Colors.white;
-
+  final TextEditingController preferController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -197,6 +203,7 @@ class _QuestionState extends State<Question> {
                     child: Container(
                       padding: EdgeInsets.only(left: 10),
                       child: TextFormField(
+                        controller: preferController,
                         enabled: isEnabled,
                         decoration: InputDecoration(
                           hintText: "Please describe it...",
@@ -226,13 +233,16 @@ class _QuestionState extends State<Question> {
                   width: 20,
                 ),
                 IconButton(
-                  icon: Icon(
-                    FontAwesome.chevron_circle_right,
-                    size: 30,
-                  ),
-                  color: Colors.white,
-                  onPressed: this.widget.onTap,
-                ),
+                    icon: Icon(
+                      FontAwesome.chevron_circle_right,
+                      size: 30,
+                    ),
+                    color: Colors.white,
+                    onPressed: () {
+                      sendPrefer(this.widget.type,
+                          isEnabled ? preferController.text : "NO");
+                      this.widget.onTap();
+                    }),
               ],
             ),
           ),
@@ -250,7 +260,8 @@ class Processing extends StatefulWidget {
 class _ProcessingState extends State<Processing> {
   _ProcessingState() {
     Duration timer = new Duration(seconds: 2);
-    new Timer(timer, () => Navigator.pushNamed(context, "/Home"));
+    new Timer(
+        timer, () => Navigator.pushNamed(context, "/ReservationCodePage"));
   }
   @override
   Widget build(BuildContext context) {

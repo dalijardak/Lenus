@@ -62,7 +62,7 @@ class FoodList extends StatelessWidget {
 class FoodElement extends StatelessWidget {
   final String title;
   final String imageUrl;
-  final String price;
+  final double price;
   final String description;
 
   FoodElement({
@@ -121,7 +121,7 @@ class FoodElement extends StatelessWidget {
                   ),
                 ),
                 new Text(
-                  "${this.price} \$",
+                  "${this.price.toString()} \$",
                   style: TextStyle(
                     fontFamily: "Roboto",
                     fontSize: 16,

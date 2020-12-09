@@ -1,9 +1,6 @@
-import 'package:Lenus_Final/screens/home_page.dart';
 import 'package:Lenus_Final/screens/reminders.dart';
-import 'package:Lenus_Final/screens/user_screen.dart';
 import 'package:Lenus_Final/screens/welcome_page.dart';
 import 'package:Lenus_Final/services/user_service.dart';
-import 'package:Lenus_Final/util/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class Auth extends StatefulWidget {
@@ -50,19 +47,9 @@ class _AuthState extends State<Auth> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Container(
-          height: getY(context) * 0.5,
-          width: getX(context) * 0.5,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/logo/logo.png"),
-            ),
-          ),
-        ),
-      ),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(backgroundColor: Colors.white, body: Container()),
     );
   }
 }

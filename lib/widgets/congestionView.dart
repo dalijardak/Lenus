@@ -1,8 +1,6 @@
 import 'package:Lenus_Final/screens/congestion_details_page.dart';
-import 'package:Lenus_Final/services/occupation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SliderItem extends StatefulWidget {
   final String title;
@@ -93,7 +91,6 @@ class _SliderItemState extends State<SliderItem> {
             ),
           ),
         ),
-        onLongPress: () => fetchOccupation(),
       ),
     );
   }

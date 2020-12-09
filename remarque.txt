@@ -1,0 +1,7 @@
+// Liste des achats par date, par montant totale, par article, et ordre par le pleus récent
+// what you can do now, lecture direct a partir du serveur.
+// des significatifs réels.
+// ordre avec
+// orders fix in UI
+// Gifts check
+// Quizz Animation (important) + UI Fix

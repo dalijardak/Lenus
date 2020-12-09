@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:Lenus_Final/util/reccomndations.dart';
 import 'package:Lenus_Final/widgets/reccom_item.dart';
 import "package:flutter/material.dart";
@@ -18,6 +20,14 @@ class _ReccomSlideState extends State<ReccomSlide> {
     return result;
   }
 
+  var random = new Random().nextInt(2);
+  List<Map> reccomondation() {
+    if (random == 0)
+      return reccomndations;
+    else
+      return reccomndations1;
+  }
+
   // ignore: unused_field
   int _current = 0;
 
@@ -35,9 +45,9 @@ class _ReccomSlideState extends State<ReccomSlide> {
             });
           }),
       items: map<Widget>(
-        reccomndations,
+        reccomondation(),
         (index, i) {
-          Map reccomndation = reccomndations[index];
+          Map reccomndation = reccomondation()[index];
           return SliderItem(
             img: reccomndation['img'],
             name: reccomndation['name'],

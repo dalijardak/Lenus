@@ -3,7 +3,6 @@ import 'package:Lenus_Final/screens/booking_page.dart';
 import 'package:Lenus_Final/screens/feedback.dart';
 import 'package:Lenus_Final/screens/gift_page.dart';
 import 'package:Lenus_Final/screens/questions.dart';
-import 'package:Lenus_Final/screens/reminders.dart';
 import 'package:Lenus_Final/screens/reservation_code_page.dart';
 import 'package:Lenus_Final/screens/sign_in.dart';
 import 'package:Lenus_Final/screens/orders.dart';
@@ -15,7 +14,6 @@ import 'package:Lenus_Final/screens/spa_page.dart';
 import 'package:Lenus_Final/screens/sports_menu_page.dart';
 import 'package:Lenus_Final/screens/user_screen.dart';
 import 'package:Lenus_Final/screens/verify_user.dart';
-import 'package:Lenus_Final/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

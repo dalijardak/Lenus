@@ -16,7 +16,16 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _MyAppBarState extends State<MyAppBar> {
   TextEditingController searchController = new TextEditingController();
-  List<String> items = ["Restaurant", "Sports", "SPA"];
+  List<String> items = [
+    "RestaurantPage",
+    "Sports",
+    "SPA",
+    "Feedback",
+    "Quiz",
+    "Profile",
+    "Orders",
+    "Gifts"
+  ];
   List<String> filtredItems = [];
 
   @override
@@ -112,6 +121,4 @@ class _MyAppBarState extends State<MyAppBar> {
       ),
     );
   }
-
-  void _searchPressed() {}
 }

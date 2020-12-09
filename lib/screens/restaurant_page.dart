@@ -5,7 +5,6 @@ import 'package:Lenus_Final/util/food_list.dart';
 import 'package:Lenus_Final/widgets/appBar.dart';
 import 'package:Lenus_Final/widgets/drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class RestaurantPage extends StatelessWidget {

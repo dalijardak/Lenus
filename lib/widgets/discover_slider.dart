@@ -25,10 +25,6 @@ class DiscoverSlider extends StatelessWidget {
           title: "Sport",
           onTap: () => Navigator.pushNamed(context, "/Sports"),
         ),
-        DiscoverItem(
-          icon: MdiIcons.palette,
-          title: "Leisure Time",
-        ),
       ],
     );
   }

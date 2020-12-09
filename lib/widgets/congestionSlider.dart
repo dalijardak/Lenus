@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:Lenus_Final/models/occupation.dart';
 import 'package:Lenus_Final/services/occupation_service.dart';
+import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'congestionView.dart';
@@ -12,7 +14,25 @@ class CongsSlide extends StatefulWidget {
 }
 
 class _CongsSlideState extends State<CongsSlide> {
+  Timer timer;
   Future<List<Occupation>> occupationList = fetchOccupation();
+
+  @override
+  void initState() {
+    super.initState();
+    /*timer = Timer.periodic(Duration(seconds: 5), (Timer t) {
+      setState(() {
+        occupationList = fetchOccupation();
+      });
+    });*/
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
   Color selectedColor(double x) {
     if (x < 0.25)
       return Color(0xffA3DAF9);
@@ -45,8 +65,10 @@ class _CongsSlideState extends State<CongsSlide> {
                 .toList(),
           );
         }
-        return Expanded(
-          child: Center(
+        return Container(
+          width: getX(context),
+          child: Align(
+            alignment: Alignment.center,
             child: Container(
               height: 100,
               width: 100,

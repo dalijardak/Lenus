@@ -27,7 +27,7 @@ Future<User> fetchReccomandation() async {
 
       return user;
     } else {
-      throw Exception("Failed to load User");
+      throw Exception("Failed to load Reccomandation");
     }
   }
 }

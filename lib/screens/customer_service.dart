@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:Lenus_Final/services/user_service.dart';
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import "package:flutter/material.dart";
 import 'package:intl/intl.dart';
@@ -26,7 +27,7 @@ class _CustomerServiceState extends State<CustomerService> {
     }
   ];
 
-  List<bool> isSelected = [true, false, false];
+  List<bool> isSelected = [true, false, false, false, false];
   int selectedIndex = 0;
   void initState() {
     super.initState();
@@ -46,9 +47,10 @@ class _CustomerServiceState extends State<CustomerService> {
   }
 
   _sendMsg() {
+    sendText(messageController.text);
     setState(() {
       messagesList.add(
-        {"text": messageController.text.toString(), "type": "Sender"},
+        {"text": messageController.text, "type": "Sender"},
       );
       isDisabled = true;
     });
@@ -78,9 +80,8 @@ class _CustomerServiceState extends State<CustomerService> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.9,
+        height: MediaQuery.of(context).size.height * 0.88,
         width: MediaQuery.of(context).size.width,
         child: Stack(
           children: [

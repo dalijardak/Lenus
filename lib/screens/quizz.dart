@@ -1,3 +1,4 @@
+import 'package:Lenus_Final/services/user_service.dart';
 import 'package:Lenus_Final/util/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -41,6 +42,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_1_d.jpg",
             icon: MdiIcons.emoticonHappy,
             onTap: _onItemTapped,
+            title: "View",
           ),
           QuizPage(
             question: "Which image makes you \nfeel excited ?",
@@ -50,6 +52,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_2_d.jpg",
             icon: MdiIcons.emoticonExcited,
             onTap: _onItemTapped,
+            title: "Events",
           ),
           QuizPage(
             question: "What would you rather \n decorate your bedroom with ?",
@@ -57,8 +60,8 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_2: "assets/Quiz/quiz_3_b.jpg",
             imageUrl_3: "assets/Quiz/quiz_3_c.jpg",
             imageUrl_4: "assets/Quiz/quiz_3_d.jpg",
-            icon: MdiIcons.deskLamp,
             onTap: _onItemTapped,
+            title: "Decoration",
           ),
           QuizPage(
             question: "What's your favourite \n type of music ?",
@@ -68,6 +71,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_4_d.jpg",
             icon: MdiIcons.musicNote,
             onTap: _onItemTapped,
+            title: "Music",
           ),
           QuizPage(
             question: "Feel free to \n pick a flower ",
@@ -77,6 +81,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_5_d.jpg",
             icon: MdiIcons.flower,
             onTap: _onItemTapped,
+            title: "Flower",
           ),
           QuizPage(
             question: "Choose your favorite \n meal ",
@@ -86,6 +91,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_6_d.jpg",
             icon: MdiIcons.food,
             onTap: _onItemTapped,
+            title: "Meal",
           ),
           QuizPage(
             question: "Which desser would \n you rather have ?",
@@ -95,6 +101,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_7_d.jpg",
             icon: MdiIcons.iceCream,
             onTap: _onItemTapped,
+            title: "Desert",
           ),
           QuizPage(
             question: "What drink would you want ?",
@@ -104,6 +111,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_8_d.jpg",
             icon: MdiIcons.coffee,
             onTap: _onItemTapped,
+            title: "Drinks",
           ),
           QuizPage(
             question: "Which sport you prefer \n to play?",
@@ -113,6 +121,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_9_d.jpg",
             icon: MdiIcons.football,
             onTap: _onItemTapped,
+            title: "Sports",
           ),
           QuizPage(
             question: "Which fruit dou you prefer ?",
@@ -122,6 +131,7 @@ class _QuizPagesState extends State<QuizPages> {
             imageUrl_4: "assets/Quiz/quiz_10_d.jpg",
             icon: MdiIcons.fruitCherries,
             onTap: _onItemTapped,
+            title: "Fruits",
           ),
           quizEnd(context),
         ],
@@ -218,7 +228,10 @@ class _QuizPagesState extends State<QuizPages> {
   }
 }
 
-class QuizPage extends StatelessWidget {
+class QuizPage extends StatefulWidget {
+  @override
+  _QuizPageState createState() => _QuizPageState();
+
   final String question;
   final String imageUrl_1;
   final String imageUrl_2;
@@ -226,6 +239,7 @@ class QuizPage extends StatelessWidget {
   final String imageUrl_4;
   final IconData icon;
   final dynamic onTap;
+  final String title;
 
   QuizPage({
     this.question,
@@ -235,8 +249,12 @@ class QuizPage extends StatelessWidget {
     this.imageUrl_4,
     this.icon,
     this.onTap,
+    this.title,
   });
+}
 
+class _QuizPageState extends State<QuizPage> {
+  double _height = 300;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -250,15 +268,6 @@ class QuizPage extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           Positioned(
-            top: getY(context) * 0.07,
-            left: getX(context) * 0.07,
-            child: Icon(
-              MdiIcons.windowClose,
-              color: Colors.white,
-              size: getY(context) * 0.05,
-            ),
-          ),
-          Positioned(
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -267,15 +276,13 @@ class QuizPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    (icon == null)
-                        ? SizedBox()
-                        : Icon(
-                            icon,
-                            color: Colors.blue,
-                            size: getY(context) * 0.12,
-                          ),
+                    Icon(
+                      this.widget.icon,
+                      color: Colors.blue,
+                      size: getY(context) * 0.12,
+                    ),
                     new Text(
-                      this.question,
+                      this.widget.question,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: "Roboto",
@@ -294,10 +301,30 @@ class QuizPage extends StatelessWidget {
                         mainAxisSpacing: 2,
                         crossAxisSpacing: 2,
                         children: [
-                          image(imageUrl_1, context),
-                          image(imageUrl_2, context),
-                          image(imageUrl_3, context),
-                          image(imageUrl_4, context),
+                          image(
+                            this.widget.imageUrl_1,
+                            context,
+                            this.widget.title,
+                            [1, 0, 0, 0],
+                          ),
+                          image(
+                            this.widget.imageUrl_2,
+                            context,
+                            this.widget.title,
+                            [0, 1, 0, 0],
+                          ),
+                          image(
+                            this.widget.imageUrl_3,
+                            context,
+                            this.widget.title,
+                            [0, 0, 1, 0],
+                          ),
+                          image(
+                            this.widget.imageUrl_4,
+                            context,
+                            this.widget.title,
+                            [0, 0, 0, 1],
+                          ),
                         ],
                       ),
                     ),
@@ -311,22 +338,31 @@ class QuizPage extends StatelessWidget {
     );
   }
 
-  Widget image(String imgurl, BuildContext context) {
+  Widget image(
+      String imgurl, BuildContext context, String title, List<int> numberList) {
     return InkWell(
       child: Align(
-        child: Container(
-          height: getY(context) * 0.21,
-          width: getY(context) * 0.21,
+        child: AnimatedContainer(
+          curve: Curves.fastOutSlowIn,
+          duration: Duration(milliseconds: 200),
+          height: _height,
+          width: _height,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(imgurl),
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.circular(18.00),
           ),
         ),
       ),
-      onTap: this.onTap,
+      onLongPress: () => setState(() {
+        _height = 100;
+      }),
+      onTap: () {
+        sendQuiz(title, numberList);
+        this.widget.onTap();
+      },
     );
   }
 }

@@ -12,9 +12,6 @@ Future<List<Occupation>> fetchOccupation() async {
     print(json.decode(jsonResponse));
     Iterable list = json.decode(response.body);
     occupations = list.map((model) => Occupation.fromJson(model)).toList();
-    print(
-      occupations[0].toJson(),
-    );
     return occupations;
   } else {
     throw Exception("Failed to load Occupation");
