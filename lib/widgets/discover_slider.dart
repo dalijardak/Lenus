@@ -1,3 +1,4 @@
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import "package:flutter/material.dart";
 
 import 'discover_item.dart';
@@ -12,18 +13,17 @@ class DiscoverSlider extends StatelessWidget {
         DiscoverItem(
           icon: Icons.restaurant,
           title: "Restaurant",
+          onTap: () => Navigator.pushNamed(context, "/RestaurantPage"),
         ),
         DiscoverItem(
-          icon: Icons.pool,
-          title: "Pool",
+          icon: Icons.spa,
+          title: "SPA",
+          onTap: () => Navigator.pushNamed(context, "/SPA"),
         ),
         DiscoverItem(
-          icon: Icons.shop,
-          title: "Shop",
-        ),
-        DiscoverItem(
-          icon: Icons.ac_unit,
+          icon: MdiIcons.handball,
           title: "Sport",
+          onTap: () => Navigator.pushNamed(context, "/Sports"),
         ),
       ],
     );

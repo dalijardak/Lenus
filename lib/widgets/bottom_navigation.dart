@@ -1,4 +1,4 @@
-import 'package:flutter_icons/flutter_icons.dart';
+/*import 'package:flutter_icons/flutter_icons.dart';
 import "package:flutter/material.dart";
 
 class BottomNav extends StatefulWidget {
@@ -66,3 +66,4 @@ class _BottomNavState extends State<BottomNav> {
     );
   }
 }
+*/

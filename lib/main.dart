@@ -1,7 +1,25 @@
-import 'package:Lenus_Final/screens/userScreen.dart';
+import 'package:Lenus_Final/screens/about_page.dart';
+import 'package:Lenus_Final/screens/booking_page.dart';
+import 'package:Lenus_Final/screens/feedback.dart';
+import 'package:Lenus_Final/screens/gift_page.dart';
+import 'package:Lenus_Final/screens/questions.dart';
+import 'package:Lenus_Final/screens/reservation_code_page.dart';
+import 'package:Lenus_Final/screens/sign_in.dart';
+import 'package:Lenus_Final/screens/orders.dart';
+import 'package:Lenus_Final/screens/profile.dart';
+import 'package:Lenus_Final/screens/quizz.dart';
+import 'package:Lenus_Final/screens/restaurant_page.dart';
+import 'package:Lenus_Final/screens/sign_up.dart';
+import 'package:Lenus_Final/screens/spa_page.dart';
+import 'package:Lenus_Final/screens/sports_menu_page.dart';
+import 'package:Lenus_Final/screens/user_screen.dart';
+import 'package:Lenus_Final/screens/verify_user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MyApp());
 }
 
@@ -15,7 +33,24 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: UserScreen(),
+      routes: {
+        '/': (context) => Auth(),
+        '/Login': (context) => LoginPage(),
+        '/SignUp': (context) => SignUpPage(),
+        "/ReservationCodePage": (context) => ReservationCodePage(),
+        '/Questions': (context) => QuestionsPage(),
+        '/Home': (context) => UserScreen(),
+        '/Feedback': (context) => FeedbackPage(),
+        '/Quiz': (context) => QuizPages(),
+        '/RestaurantPage': (context) => RestaurantPage(),
+        '/Sports': (context) => SportsPage(),
+        '/SPA': (context) => SPADetailsPage(),
+        '/Profile': (context) => Profile(),
+        '/About': (context) => AboutPage(),
+        '/Booking': (context) => BookingPage(),
+        '/Orders': (context) => OrdersPage(),
+        '/Gifts': (context) => GiftsPage(),
+      },
     );
   }
 }

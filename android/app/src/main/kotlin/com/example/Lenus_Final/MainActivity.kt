@@ -1,4 +1,4 @@
-package com.example.Lenus_Final
+package com.osc.lenus
 
 import io.flutter.embedding.android.FlutterActivity
 
