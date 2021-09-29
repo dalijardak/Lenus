@@ -17,11 +17,11 @@ The mobile app was developped using Flutter and Spring Boot/Mongo DB.
 
 ### Login 
 
-![login](https://github.com/dalijardak/Lenus/blob/master/screens/login_page.jpg)
+![login](https://github.com/dalijardak/Lenus/blob/master/screens/login_page.jpeg)
 
 ### Sign Up 
 
-![sign up](https://github.com/dalijardak/Lenus/blob/master/screens/signup_page.jpg)
+![sign up](https://github.com/dalijardak/Lenus/blob/master/screens/signup_page.jpeg)
 
 ### Home
 
