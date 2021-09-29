@@ -11,6 +11,10 @@ Lenus allows :
 
 The mobile app was developped using Flutter and Spring Boot/Mongo DB.
 
+### Demo 
+
+![Demo](https://github.com/dalijardak/Lenus/blob/master/screens/demo.gif)
+
 ### Welcome Screen
 
 ![Welcome Screen](https://github.com/dalijardak/Lenus/blob/master/screens/image_large.jpeg)
@@ -35,6 +39,4 @@ The mobile app was developped using Flutter and Spring Boot/Mongo DB.
 
 ![customer_service](https://github.com/dalijardak/Lenus/blob/master/screens/customer_service.jpeg)
 
-### Demo 
 
-![Demo](https://gifs.com/gif/demo-x61QAr)
