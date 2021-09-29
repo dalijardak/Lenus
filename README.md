@@ -35,4 +35,6 @@ The mobile app was developped using Flutter and Spring Boot/Mongo DB.
 
 ![customer_service](https://github.com/dalijardak/Lenus/blob/master/screens/customer_service.jpeg)
 
+### Demo 
 
+[![Demo](https://gifs.com/gif/demo-x61QAr)]
