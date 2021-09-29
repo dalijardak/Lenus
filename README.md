@@ -10,3 +10,31 @@ Lenus allows :
 ## Mobile App
 
 The mobile app was developped using Flutter and Spring Boot/Mongo DB.
+
+### Welcome Screen
+
+![Welcome Screen](https://github.com/dalijardak/Lenus/blob/master/screens/image_large.jpeg)
+
+### Login 
+
+![login](https://github.com/dalijardak/Lenus/blob/master/screens/login_page.jpeg)
+
+### Sign Up 
+
+![sign up](https://github.com/dalijardak/Lenus/blob/master/screens/signup_page.jpeg)
+
+### Home
+
+![home](https://github.com/dalijardak/Lenus/blob/master/screens/home_page.jpeg)
+
+### Drawer
+
+![drawer](https://github.com/dalijardak/Lenus/blob/master/screens/drawer.jpeg)
+
+### Customer Service
+
+![customer_service](https://github.com/dalijardak/Lenus/blob/master/screens/customer_service.jpeg)
+
+### Demo 
+
+![Demo](https://gifs.com/gif/demo-x61QAr)
