@@ -37,4 +37,4 @@ The mobile app was developped using Flutter and Spring Boot/Mongo DB.
 
 ### Demo 
 
-[![Demo](https://gifs.com/gif/demo-x61QAr)]
+![Demo](https://gifs.com/gif/demo-x61QAr)
