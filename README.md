@@ -13,26 +13,26 @@ The mobile app was developped using Flutter and Spring Boot/Mongo DB.
 
 ### Welcome Screen
 
-![home page](https://github.com/dalijardak/BlackStreet/blob/main/image_large.jpeg)
+![home page](https://github.com/dalijardak/BlackStreet/blob/main/screens/image_large.jpeg)
 
 ### Login 
 
-![home page](https://github.com/dalijardak/BlackStreet/blob/main/login_page.jpg)
+![home page](https://github.com/dalijardak/BlackStreet/blob/main/screens/login_page.jpg)
 
 ### Sign Up 
 
-![home page](https://github.com/dalijardak/BlackStreet/blob/main/signup_page.jpg)
+![home page](https://github.com/dalijardak/BlackStreet/blob/main/screens/signup_page.jpg)
 
 ### Home
 
-![home page](https://github.com/dalijardak/BlackStreet/blob/main/home_page.jpeg)
+![home page](https://github.com/dalijardak/BlackStreet/blob/main/screens/home_page.jpeg)
 
 ### Drawer
 
-![home page](https://github.com/dalijardak/BlackStreet/blob/main/drawer.jpeg)
+![home page](https://github.com/dalijardak/BlackStreet/blob/main/screens/drawer.jpeg)
 
 ### Customer Service
 
-![home page](https://github.com/dalijardak/BlackStreet/blob/main/customer_service.jpeg)
+![home page](https://github.com/dalijardak/BlackStreet/blob/main/screens/customer_service.jpeg)
 
 
