@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   Form(
                     key: _formKey,
                     child: Container(
-                      height: getY(context) * 0.22,
+                      height: getY(context) * 0.24,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -217,37 +217,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Container(
-                      height: getY(context) * 0.05,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          new Text(
-                            "Don’t have an account ?",
-                            style: TextStyle(
-                              fontFamily: "Roboto",
-                              fontSize: 16,
-                              color: Color(0xff070606).withOpacity(0.30),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () =>
-                                Navigator.pushNamed(context, "/SignUp"),
-                            child: new Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                fontFamily: "Roboto",
-                                fontSize: 16,
-                                color: Color(0xff070606),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),

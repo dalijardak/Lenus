@@ -140,7 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           TextFormField(
                             controller: emailController,
-                            obscureText: isVisible,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               labelText: "Email",
                               enabledBorder: UnderlineInputBorder(
@@ -158,6 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           TextFormField(
                             controller: passwordController,
+                            keyboardType: TextInputType.visiblePassword,
                             obscureText: isVisible,
                             decoration: InputDecoration(
                               labelText: " Password",
@@ -186,6 +187,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           TextFormField(
                             controller: confirmPasswordController,
+                            keyboardType: TextInputType.visiblePassword,
                             decoration: InputDecoration(
                               suffixIcon: IconButton(
                                 icon: isVisible

@@ -73,13 +73,15 @@ class _HomePageState extends State<HomePage> {
             constDiag(),
             Padding(
               padding: EdgeInsets.only(top: 30, left: 15),
-              child: Text("For You",
-                  style: TextStyle(
-                    fontFamily: "Helvetica Neue",
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                    color: Color(0xff2f2f30),
-                  )),
+              child: Text(
+                "For You",
+                style: TextStyle(
+                  fontFamily: "Helvetica Neue",
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                  color: Color(0xff2f2f30),
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 30, left: 15),
