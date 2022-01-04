@@ -7,6 +7,10 @@ Lenus allows :
 - Delimiting the epidemic in case of contamination.
 - Personalizing and improving the customer experience (Profiling).
 - Automate the Check in / Check out process using a terminal to verify customer identity and to accelerate the process.
+
+## Project Website
+https://faressoltani55.github.io/lenusWebsite/ 
+
 ## Mobile App
 
 The mobile app was developped using Flutter and Spring Boot/Mongo DB.
